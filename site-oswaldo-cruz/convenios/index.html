@@ -14,7 +14,7 @@
 <style>[hidden]{display:none!important}img{max-width:100%}body{margin:0}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&family=Instrument+Sans:wght@400;500;600;700&display=swap">
 <style>
 /* Conceito: blocos encaixados como lâminas de microscopia, ligados por conectores circulares, sobre papel azulado com grade e grão */
 :root{
@@ -33,7 +33,7 @@
   --on-dark-soft:rgba(242,246,249,.72);
   --f-display:"Libre Franklin","Franklin Gothic Medium","Arial Narrow",Arial,sans-serif;
   --f-body:"Instrument Sans","Segoe UI",system-ui,-apple-system,sans-serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --f-mono:"Instrument Sans",system-ui,sans-serif;
   --r-lg:36px; --r-md:24px; --r-sm:14px;
   --ease:cubic-bezier(.22,1,.36,1);
   --gut:clamp(16px,4vw,40px);
@@ -49,7 +49,7 @@ a{color:inherit}
 button,input{font:inherit}
 :focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:8px}
 .wrap{width:100%;max-width:1240px;margin-inline:auto;padding-inline:var(--gut)}
-.mono{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.mono{font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
 h1,h2,h3{font-family:var(--f-display);font-weight:700;line-height:1.05;margin:0;text-wrap:balance;letter-spacing:-.025em}
 h2{font-size:clamp(32px,5vw,56px)}
 h2 em,h1 em{font-style:normal;color:var(--blue);font-weight:500}
@@ -66,12 +66,13 @@ p{margin:0}
 .brand img{height:34px;width:auto}
 .brand .sym{display:none}
 .nav{position:relative;display:none;align-items:center;gap:2px}
-.nav a{position:relative;z-index:1;text-decoration:none;font-weight:500;font-size:15px;padding:10px 16px;border-radius:999px;color:var(--ink-soft);transition:color .3s}
+.nav a{position:relative;z-index:1;text-decoration:none;font-weight:500;font-size:15px;padding:10px 14px;white-space:nowrap;border-radius:999px;color:var(--ink-soft);transition:color .3s}
 .nav a:hover,.nav a.on{color:var(--navy)}
 .nav .lens{position:absolute;z-index:0;top:0;height:100%;border-radius:999px;background:var(--paper-2);opacity:0;transition:transform .45s var(--ease),width .45s var(--ease),opacity .25s}
 .hdr-actions{display:flex;align-items:center;gap:8px}
 .btn{display:inline-flex;align-items:center;gap:10px;border:0;cursor:pointer;text-decoration:none;font-weight:600;border-radius:999px;transition:transform .35s var(--ease),background .3s,color .3s}
-.btn-res{background:var(--navy);color:#fff;padding:11px 18px;font-size:14px}
+.btn-res{background:var(--navy);color:#fff;padding:11px 18px;font-size:14px;white-space:nowrap}
+@media (min-width:1000px) and (max-width:1279px){.nav a{padding:10px 9px;font-size:14px}.btn-res{padding:10px 14px}}
 .btn-res:hover{background:var(--navy-deep)}
 .btn-res .dot{width:8px;height:8px;border-radius:50%;background:var(--mist);box-shadow:0 0 0 0 rgba(169,195,210,.8);animation:pulse 2.4s infinite}
 @keyframes pulse{70%{box-shadow:0 0 0 8px rgba(169,195,210,0)}100%{box-shadow:0 0 0 0 rgba(169,195,210,0)}}
@@ -380,11 +381,12 @@ section{padding-block:clamp(64px,9vw,120px)}
 .logo-cell{position:relative;height:84px;border-radius:var(--r-sm);border:1px solid var(--line);display:grid;place-items:center;background:var(--paper);padding:12px;cursor:pointer;transition:background .35s,border-color .35s,transform .45s var(--ease),box-shadow .45s var(--ease)}
 .logo-cell.hide{display:none}
 .lg-mono,.lg-color{grid-area:1/1;height:var(--h);max-width:82%;transition:opacity .45s var(--ease),transform .5s var(--ease)}
-.lg-mono{display:block;width:100%;background:var(--ink-soft);opacity:.55;-webkit-mask:var(--src) center/contain no-repeat;mask:var(--src) center/contain no-repeat}
-.lg-color{width:auto;object-fit:contain;opacity:0;transform:scale(.94)}
+.lg-mono{display:none}
+.lg-color{width:auto;object-fit:contain;opacity:.6;filter:grayscale(1);transition:opacity .45s var(--ease),filter .45s var(--ease),transform .5s var(--ease)}
 .lg:hover,.lg:focus-visible,.lg.on{background:#fff;border-color:var(--mist);transform:translateY(-3px);box-shadow:0 16px 30px -22px rgba(20,26,60,.45)}
 .lg:hover .lg-mono,.lg:focus-visible .lg-mono,.lg.on .lg-mono{opacity:0;transform:scale(1.04)}
-.lg:hover .lg-color,.lg:focus-visible .lg-color,.lg.on .lg-color{opacity:1;transform:none}
+.lg:hover .lg-color,.lg:focus-visible .lg-color,.lg.on .lg-color{opacity:1;filter:none;transform:scale(1.04)}
+.lg-txt{cursor:default}.lg-txt b{font-family:var(--f-display);font-weight:700;font-size:15px;line-height:1.15;text-align:center;color:var(--ink-soft);opacity:.8;transition:color .35s,opacity .35s}.lg-txt:hover b{color:var(--navy);opacity:1}
 .lg-more{font-size:13px;font-weight:600;color:var(--ink-soft);text-align:center;line-height:1.3;cursor:default;border-style:dashed}
 .plans-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center;font-size:13px;color:var(--ink-soft)}
 .plans-side{background:var(--mist);border-radius:var(--r-lg);padding:clamp(20px,3vw,36px);display:grid;gap:16px;align-content:space-between;position:relative;overflow:hidden}
@@ -420,7 +422,7 @@ section{padding-block:clamp(64px,9vw,120px)}
 .btn-light:hover,.btn-line:hover{transform:translateY(-2px)}
 footer{background:var(--navy-deep);color:var(--on-dark-soft);padding-block:56px calc(32px + env(safe-area-inset-bottom,0px));margin-top:clamp(64px,8vw,110px);position:relative;overflow:hidden}
 footer .grid{display:grid;gap:32px}
-footer .logo{width:min(320px,80%);padding:14px 0}
+footer .logo{width:min(320px,80%);height:auto;aspect-ratio:800/142;object-fit:contain;padding:14px 0;box-sizing:content-box}
 footer h4{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);margin:0 0 12px;font-weight:500}
 footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 footer a{text-decoration:none;color:var(--on-dark)}
@@ -511,7 +513,7 @@ figure{margin:0}
 .vac-panel{position:relative;background:#DCE6EC;border-radius:var(--r-lg);padding:clamp(22px,4vw,56px);display:grid;gap:24px;isolation:isolate}
 .vac-panel::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;background-image:linear-gradient(rgba(39,50,128,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(39,50,128,.07) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:linear-gradient(90deg,#000,transparent 70%);mask-image:linear-gradient(90deg,#000,transparent 70%)}
 .vac-photo{position:relative;margin:calc(clamp(22px,4vw,56px) * -1 - 70px) auto -24px;width:min(86%,380px);pointer-events:none}
-.vac-photo img{width:100%;height:auto;filter:drop-shadow(0 24px 30px rgba(20,26,60,.18))}
+.vac-photo img{width:100%;height:auto;filter:none;-webkit-mask-image:linear-gradient(to bottom,#000 62%,rgba(0,0,0,.55) 80%,transparent 100%);mask-image:linear-gradient(to bottom,#000 62%,rgba(0,0,0,.55) 80%,transparent 100%)}
 .vac-body{display:grid;gap:20px;min-width:0}
 .vac-head{display:grid;gap:10px}
 .vac-head .mono{color:var(--blue)}
@@ -560,8 +562,8 @@ figure{margin:0}
 @media (min-width:1000px){
   .vac{padding-top:clamp(110px,12vw,170px)}
   .vac-panel{padding-right:44%}
-  .vac-photo{position:absolute;z-index:0;right:1%;bottom:0;height:calc(100% + 130px);width:auto;margin:0;display:flex;align-items:flex-end}
-  .vac-photo img{height:100%;width:auto;max-width:none}
+  .vac-photo{position:absolute;z-index:0;right:1%;bottom:0;height:calc(100% + 130px);aspect-ratio:760/1005;width:auto;margin:0;display:block}
+  .vac-photo img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 100%;-webkit-mask-image:none;mask-image:none}
   .vac-body{position:relative;z-index:1}
   .vac-cta{position:absolute;right:40px;bottom:40px;z-index:2}
 }
@@ -590,8 +592,8 @@ a.ch:hover .ch-go{transform:translate(4px,-50%)}
 .hours dt{color:var(--ink-soft)}
 .hours dd{margin:0;font-weight:700;color:var(--navy-deep);font-variant-numeric:tabular-nums}
 .tel{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:999px;padding:6px 6px 6px 20px;font-weight:600;font-size:16px;color:var(--navy-deep);font-variant-numeric:tabular-nums;user-select:all}
-.tel button{border:0;background:var(--navy);color:#fff;border-radius:999px;padding:9px 16px;font-size:13px;font-weight:600;cursor:pointer;transition:background .3s}
-.tel button:hover{background:var(--navy-deep)}
+.tel-call{display:inline-flex;align-items:center;gap:7px;background:var(--red);color:#fff;border-radius:999px;padding:9px 16px;font-size:13.5px;font-weight:600;text-decoration:none;white-space:nowrap;transition:background .3s,transform .3s var(--ease)}
+.tel-call:hover{background:#7d0710;transform:translateY(-1px)}
 .mascot{position:relative;min-height:340px;display:flex;align-items:flex-end;justify-content:center;overflow:visible}
 .m-bg{position:absolute;inset:40px 0 0;border-radius:var(--r-lg);background:linear-gradient(160deg,var(--blue),var(--navy));overflow:hidden}
 .m-bg::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.18) 1.2px,transparent 1.4px);background-size:16px 16px;-webkit-mask-image:linear-gradient(180deg,#000,transparent);mask-image:linear-gradient(180deg,#000,transparent)}
@@ -682,13 +684,71 @@ body.menu-open .m-dd{opacity:1;transform:none;transition-delay:.12s}
 .soc-go svg{transition:transform .35s var(--ease)}
 .soc-box:hover .soc-go svg{transform:translateX(4px)}
 
+
+/* Pré-cadastro online */
+.q-hl{position:relative;background:#fff;box-shadow:0 0 0 2px var(--red),0 24px 44px -26px rgba(157,9,19,.55)}
+.q-hl:hover{background:#fff;box-shadow:0 0 0 2px var(--red),0 30px 50px -28px rgba(157,9,19,.65)}
+.q-hl .ico{background:rgba(157,9,19,.08);color:var(--red)}
+.q-hl p b{color:var(--red);font-weight:600}
+.q-hl .saiba{background:var(--red);color:#fff}
+.q-badge{position:absolute;top:18px;right:18px;font:600 10.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--red);border-radius:999px;padding:5px 10px;animation:qpulse 2.4s ease-in-out infinite}
+@keyframes qpulse{0%,100%{box-shadow:0 0 0 0 rgba(157,9,19,.4)}50%{box-shadow:0 0 0 7px rgba(157,9,19,0)}}
+.prio{margin-top:clamp(18px,3vw,28px);display:grid;gap:22px;align-items:center;background:linear-gradient(135deg,var(--navy-deep),var(--navy));color:#fff;border-radius:var(--r-lg,28px);padding:clamp(24px,4vw,40px);position:relative;overflow:hidden}
+.prio::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(157,9,19,.45),rgba(157,9,19,0) 70%);pointer-events:none}
+.prio-copy{display:grid;gap:10px;position:relative}
+.prio-copy .mono{color:var(--mist)}
+.prio h3{font-family:var(--f-display);font-size:clamp(24px,3vw,34px);line-height:1.12;letter-spacing:-.02em;color:#fff;margin:0}
+.prio h3 em{font-style:normal;color:#FFB3B8}
+.prio p{color:rgba(255,255,255,.78);font-size:15.5px;line-height:1.6;margin:0;max-width:56ch}
+.prio-steps{list-style:none;margin:0;padding:0;display:grid;gap:8px;position:relative}
+.prio-steps li{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(169,195,210,.2);border-radius:14px;padding:10px 14px;font-size:14.5px;font-weight:500}
+.prio-steps b{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.12);font-size:13px;flex-shrink:0}
+.prio-steps li.on{background:var(--red);border-color:var(--red)}
+.prio-steps li.on b{background:#fff;color:var(--red)}
+.prio-btn{justify-self:start;background:#fff;color:var(--navy-deep);position:relative;padding:14px 22px;font-size:15px}
+.prio-btn:hover{background:#F4F7F9}
+@media (min-width:1000px){.prio{grid-template-columns:1.3fr 1fr;column-gap:48px}.prio-steps{grid-column:2;grid-row:1/span 2}.prio-btn{grid-column:1;grid-row:2}}
+.prio-band{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;background:rgba(157,9,19,.16);border:1px solid rgba(255,140,150,.28);border-radius:18px;padding:14px 18px;margin-bottom:40px;position:relative}
+.pb-ico{width:38px;height:38px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;flex-shrink:0}
+.prio-band p{flex:1;min-width:220px;margin:0;font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.8)}
+.prio-band strong{color:#fff;font-weight:600}
+.prio-band a{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy-deep);font-weight:600;font-size:14px;border-radius:999px;padding:9px 16px;text-decoration:none}
+.prio-band a svg{transition:transform .3s var(--ease)}
+.prio-band a:hover svg{transform:translateX(3px)}
+.prio-note{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:14px 0 0;font-size:13.5px;color:var(--ink-soft)}
+.prio-note span{font:600 10.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--red);border-radius:999px;padding:4px 9px}
+@media (prefers-reduced-motion:reduce){.q-badge{animation:none}}
+
+.wkband{display:grid;gap:16px;background:linear-gradient(135deg,var(--navy-deep),var(--navy));color:#fff;border-radius:var(--r-md);padding:clamp(18px,3vw,28px);margin-bottom:12px}
+.wkb-copy{display:grid;gap:6px}
+.wkb-copy .mono{color:var(--mist);font-size:11px}
+.wkb-copy strong{font-family:var(--f-display);font-size:clamp(20px,2.4vw,26px);letter-spacing:-.02em;line-height:1.15}
+.wkb-copy>span:last-child{color:var(--on-dark-soft);font-size:14.5px}
+.wkb-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.wkc{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-height:92px;text-decoration:none;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(169,195,210,.22);border-radius:14px;padding:10px 12px;transition:background .3s,transform .35s var(--ease)}
+.wkc:hover{background:rgba(255,255,255,.16);transform:translateY(-2px)}
+.wkc b{font-size:14px;font-weight:600;line-height:1.25}.wkc small{font-size:12px;color:var(--mist)}.wkc em{font-style:normal;font-size:11.5px;font-weight:600;color:#FFB3B8;margin-top:auto;padding-top:6px}
+.unit .status.wkd{background:var(--red);color:#fff}
+.unit .wk-h{color:var(--red);font-weight:600}
+.unit-acts{display:flex;align-items:center;gap:10px;border-top:1px solid var(--line);padding-top:14px}
+.unit-acts .go{flex:1;border-top:0;padding-top:0}
+.u-dirb{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:#fff;text-decoration:none;border-radius:999px;padding:8px 14px;font-size:13.5px;font-weight:600;white-space:nowrap}
+@media (min-width:760px){.wkb-list{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (min-width:1000px){.wkband{grid-template-columns:320px 1fr;align-items:center;gap:28px}}
+.plan-note{margin:0 0 12px;font-size:13.5px;line-height:1.5;color:var(--ink-soft);background:var(--paper);border-radius:12px;padding:10px 14px}
+.plan-note b{color:var(--red)}
+.plan-note a{color:#17663F;font-weight:600;text-underline-offset:3px}
 /* Parceiros no rodapé */
 .partners{margin-top:36px;padding-top:22px;border-top:1px solid rgba(169,195,210,.18);display:grid;gap:14px}
 .p-t{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mist)}
 .partners ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px 14px}
 .partners li{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--on-dark-soft)}
 .p-logo{width:96px;height:44px;border-radius:10px;background:#fff;display:grid;place-items:center;padding:6px 8px;flex-shrink:0;transition:transform .35s var(--ease)}
-.p-logo img{max-width:100%;max-height:100%;object-fit:contain}
+.p-logo img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;margin:auto}
+.credit{margin-top:14px;font-size:11.5px;color:rgba(169,195,210,.55);letter-spacing:.02em}
+.credit b{font-weight:600;color:rgba(169,195,210,.8)}
+.credit a{color:inherit;text-decoration:none}
+.credit a:hover b{color:#fff;text-decoration:underline;text-underline-offset:3px}
 .partners li:hover .p-logo{transform:translateY(-2px)}
 footer .legal{margin-top:22px}
 @media (min-width:760px){
@@ -698,6 +758,34 @@ footer .legal{margin-top:22px}
 @media (min-width:1000px) and (max-width:1199px){
   .nav a{padding:10px 11px;font-size:14px}
 }
+
+/* WhatsApp flutuante */
+.wa-float{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:85;width:60px;height:60px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;text-decoration:none;box-shadow:0 14px 30px -10px rgba(10,60,30,.55);transition:transform .4s var(--ease),bottom .45s var(--ease),opacity .3s}
+.wa-float::before{content:"";position:absolute;inset:0;border-radius:50%;background:#25D366;z-index:-1;animation:waP 2.6s ease-out infinite}
+@keyframes waP{0%{transform:scale(1);opacity:.55}70%,100%{transform:scale(1.55);opacity:0}}
+.wa-float:hover{transform:scale(1.07)}
+.wa-tip{position:absolute;right:calc(100% + 12px);top:50%;transform:translate(8px,-50%);opacity:0;pointer-events:none;white-space:nowrap;background:var(--navy-deep);color:#fff;font-size:13px;font-weight:600;border-radius:999px;padding:8px 14px;transition:opacity .3s,transform .4s var(--ease)}
+.wa-float:hover .wa-tip,.wa-float:focus-visible .wa-tip{opacity:1;transform:translate(0,-50%)}
+body.menu-open .wa-float,body.ud-open .wa-float{opacity:0;pointer-events:none}
+/* Aviso de cookies */
+.ck{position:fixed;left:0;right:0;bottom:0;z-index:95;padding:0 max(12px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));transform:translateY(110%);transition:transform .45s var(--ease);pointer-events:none}
+body.ck-on .ck{transform:none}
+.ck-in{pointer-events:auto;max-width:980px;margin-inline:auto;display:grid;grid-template-columns:auto 1fr;gap:12px 14px;align-items:center;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:20px;padding:16px 18px;box-shadow:0 24px 60px -24px rgba(20,26,60,.45)}
+.ck-ic{width:42px;height:42px;border-radius:12px;background:var(--paper);color:var(--navy);display:grid;place-items:center;align-self:start}
+.ck-t{font-size:13.5px;line-height:1.55;color:var(--ink-soft);margin:0}
+.ck-t b{color:var(--navy-deep)}
+.ck-t a{color:var(--navy);font-weight:600;text-underline-offset:3px}
+.ck-b{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end}
+.ck-b button{font:inherit;font-weight:600;font-size:14px;border-radius:999px;padding:11px 20px;cursor:pointer;transition:background .3s,color .3s,transform .3s var(--ease)}
+.ck-no{background:#fff;border:1px solid var(--line);color:var(--navy)}
+.ck-no:hover{background:var(--paper)}
+.ck-ok{background:var(--navy);border:1px solid var(--navy);color:#fff}
+.ck-ok:hover{background:var(--navy-deep)}
+.ck-b button:active{transform:scale(.97)}
+body.ck-on .wa-float{bottom:calc(var(--ckh,150px) + 26px + env(safe-area-inset-bottom,0px))}
+footer .legal a{color:var(--on-dark);text-underline-offset:3px}
+@media (min-width:760px){.ck-in{grid-template-columns:auto 1fr auto;padding:16px 20px}.ck-b{grid-column:auto}body.ck-on .wa-float{bottom:calc(var(--ckh,92px) + 26px)}}
+@media (max-width:420px){.wa-float{width:56px;height:56px}.ck-b button{flex:1}}
 /* Scroll reveal (progressive) */
 @supports (animation-timeline:view()){
   .rv{animation:rv linear both;animation-timeline:view();animation-range:entry 0% entry 40%}
@@ -729,7 +817,7 @@ footer .legal{margin-top:22px}
   .burger,.sheet{display:none}
   .hero{padding-block:36px 56px}
   .hero-grid{grid-template-columns:1.05fr 1fr;gap:40px;align-items:start}
-  .hero-copy{padding-top:48px}
+  .hero-copy{padding-top:48px;padding-right:48px}
   .stage{grid-template-columns:1fr}
   .photo{aspect-ratio:auto;height:560px}
   .results{position:absolute;left:-56px;right:auto;bottom:-72px;width:300px;padding:20px;box-shadow:0 40px 80px -40px rgba(20,26,60,.6)}
@@ -769,6 +857,31 @@ main section{padding-block:clamp(28px,4.5vw,56px)}
 .pg-h2{font-size:clamp(28px,4vw,44px);color:var(--navy-deep)}
 @media (min-width:1000px){.pg-hero{padding-block:36px 20px!important}}
 
+.cv-alert{display:grid;gap:12px;background:var(--card);border:1px solid var(--line);border-left:0;border-radius:var(--r-sm);padding:16px 18px;box-shadow:inset 4px 0 0 var(--red);max-width:620px}
+.cv-alert strong{display:block;color:var(--navy-deep);font-size:15.5px;margin-bottom:4px}
+.cv-alert span{font-size:14px;color:var(--ink-soft);line-height:1.55}
+.cv-wa{justify-self:start;display:inline-flex;align-items:center;gap:8px;background:#1E7F4F;color:#fff;text-decoration:none;font-weight:600;font-size:14px;border-radius:999px;padding:10px 16px;transition:background .3s}
+.cv-wa:hover{background:#17663F}
+
+.cx-grid{display:grid;gap:10px;margin-bottom:28px}
+.cx{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;text-align:left;font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:20px;cursor:pointer;transition:transform .45s var(--ease),border-color .3s,box-shadow .45s}
+.cx:hover,.cx:focus-visible{transform:translateY(-4px);border-color:var(--mist);box-shadow:0 22px 44px -30px rgba(20,26,60,.45)}
+.cx-ic{width:48px;height:48px;border-radius:14px;background:rgba(157,9,19,.08);color:var(--red);display:grid;place-items:center}
+.cx-b{display:grid;gap:6px;min-width:0}
+.cx-b .mono{color:var(--blue);font-size:11px}
+.cx-b strong{font-family:var(--f-display);font-size:19px;letter-spacing:-.015em;color:var(--navy-deep)}
+.cx-b>span:not(.mono):not(.cx-go){font-size:14px;color:var(--ink-soft);line-height:1.55}
+.cx-go{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--red);margin-top:4px}
+.cx-go svg{transition:transform .35s var(--ease)}.cx:hover .cx-go svg{transform:translateX(4px)}
+.pc-t{cursor:default}
+.pc-word{font-family:var(--f-display);font-weight:700;font-size:17px;letter-spacing:-.01em;color:var(--ink-soft);text-align:center;line-height:1.15;opacity:.8;transition:color .35s,opacity .35s}
+.pc-t:hover .pc-word{color:var(--navy);opacity:1}
+.pc-t:hover{border-color:var(--mist)}
+.pc-img{max-height:46px;max-width:80%;object-fit:contain;mix-blend-mode:multiply;filter:grayscale(1);opacity:.75;transition:filter .35s,opacity .35s}
+.pc-t:hover .pc-img{filter:none;opacity:1}
+.pc-meta strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (min-width:760px){.cx-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
 /* ===== Convênios ===== */
 .cv-hero{display:grid;gap:28px}
 .cv-copy{display:grid;gap:16px;align-content:center}
@@ -798,15 +911,15 @@ main section{padding-block:clamp(28px,4.5vw,56px)}
 .pc.hide{display:none}
 .pc-logo{display:grid;place-items:center;height:110px;background:var(--paper);padding:16px;transition:background .35s}
 .pc-logo>*{grid-area:1/1}
-.lg-mono{display:block;width:80%;height:var(--h);background:var(--ink-soft);opacity:.55;-webkit-mask:var(--src) center/contain no-repeat;mask:var(--src) center/contain no-repeat;transition:opacity .45s var(--ease),transform .5s var(--ease)}
-.lg-color{height:var(--h);max-width:80%;width:auto;object-fit:contain;opacity:0;transform:scale(.94);transition:opacity .45s var(--ease),transform .5s var(--ease)}
+.lg-mono{display:none}
+.lg-color{height:var(--h);max-width:80%;width:auto;object-fit:contain;opacity:.6;filter:grayscale(1);transition:opacity .45s var(--ease),filter .45s var(--ease),transform .5s var(--ease)}
 .pc-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 14px;border-top:1px solid var(--line)}
 .pc-meta strong{font-size:14.5px;color:var(--navy-deep)}
 .pc-meta em{font-style:normal;font-size:11px;color:var(--ink-soft);background:var(--paper);border-radius:999px;padding:3px 8px;white-space:nowrap}
 .lg:hover,.lg:focus-visible,.lg.on{transform:translateY(-4px);border-color:var(--mist);box-shadow:0 22px 44px -30px rgba(20,26,60,.45)}
 .lg:hover .pc-logo,.lg:focus-visible .pc-logo,.lg.on .pc-logo{background:#fff}
 .lg:hover .lg-mono,.lg:focus-visible .lg-mono,.lg.on .lg-mono{opacity:0;transform:scale(1.04)}
-.lg:hover .lg-color,.lg:focus-visible .lg-color,.lg.on .lg-color{opacity:1;transform:none}
+.lg:hover .lg-color,.lg:focus-visible .lg-color,.lg.on .lg-color{opacity:1;filter:none;transform:scale(1.04)}
 .pc-part{cursor:default}
 .pc-part .pc-logo{background:var(--red)}
 .pc-part .pc-logo b{font-family:var(--f-display);font-size:22px;color:#fff;letter-spacing:-.02em}
@@ -887,6 +1000,7 @@ main section{padding-block:clamp(28px,4.5vw,56px)}
             <div class="dd-foot"><span>11 setores técnicos especializados</span><a href="../index.html#departamentos" class="dd-all">Ver todos <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
           </div>
         </div>
+        <a href="../index.html#vacinas">Vacinas</a>
         <a href="#topo" class="on">Convênios</a>
         <a href="../informativos/index.html">Informativos</a>
         <a href="../unidades/index.html">Unidades</a>
@@ -904,9 +1018,10 @@ main section{padding-block:clamp(28px,4.5vw,56px)}
     <a href="../index.html#inicio">Início <small>01</small></a>
     <details class="m-dd"><summary>O Laboratório <small>02</small></summary><div class="m-dd-list"><a href="../laboratorio/historico.html">Histórico</a><a href="../laboratorio/politica-de-qualidade.html">Política de Qualidade</a><a href="../laboratorio/biografia.html">Biografia</a></div></details>
     <details class="m-dd"><summary>Departamentos <small>03</small></summary><div class="m-dd-list"><a href="../departamentos/anatomia-patologica.html">Anatomia Patológica</a><a href="../departamentos/bioquimica.html">Bioquímica</a><a href="../departamentos/divisao-veterinaria.html">Divisão Veterinária</a><a href="../departamentos/hematologia.html">Hematologia</a><a href="../departamentos/imunologia.html">Imunologia</a><a href="../departamentos/microbiologia.html">Microbiologia</a><a href="../departamentos/medicina-do-trabalho.html">Medicina do Trabalho</a><a href="../departamentos/parasitologia.html">Parasitologia</a><a href="../departamentos/toxicologia.html">Toxicologia</a><a href="../departamentos/urinalise-e-liquidos-corporeos.html">Urinálise e Líquidos Corpóreos</a><a href="../departamentos/biologia-molecular.html">Biologia Molecular</a></div></details>
-    <a href="#topo" class="on">Convênios <small>04</small></a>
-    <a href="../informativos/index.html">Informativos <small>05</small></a>
-    <a href="../unidades/index.html">Unidades <small>06</small></a>
+    <a href="../index.html#vacinas">Vacinas <small>04</small></a>
+    <a href="#topo" class="on">Convênios <small>05</small></a>
+    <a href="../informativos/index.html">Informativos <small>06</small></a>
+    <a href="../unidades/index.html">Unidades <small>07</small></a>
   </nav>
   <a class="sheet-res" href="../index.html#resultados">Acessar meus resultados <span class="circ"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
 </div>
@@ -919,30 +1034,38 @@ main section{padding-block:clamp(28px,4.5vw,56px)}
         <span class="mono pg-eyebrow">Convênios e planos de saúde</span>
         <h1 class="pg-h1">Seu plano é <em>bem-vindo</em> aqui.</h1>
         <p class="lead">Atendemos os principais planos de saúde e também o atendimento particular. Busque o seu convênio e confira.</p>
+        <div class="cv-alert" role="note"><div><strong>Confirme seu convênio com a unidade antes da coleta.</strong><span>Cada unidade atende planos específicos, e cada plano tem categorias e coberturas próprias. Fale com o time da unidade pelo WhatsApp para confirmar o seu.</span></div><a class="cv-wa" href="https://wa.me/551221239200?text=Ol%C3%A1!%20Gostaria%20de%20confirmar%20se%20meu%20conv%C3%AAnio%20%C3%A9%20atendido%20na%20unidade." target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3Zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6Zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.2 2.4 3.7 5.9 5.2 2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4Z"/></svg> Confirmar no WhatsApp</a></div>
         <div class="cv-search"><label for="cvQ" class="sr">Buscar convênio</label><input id="cvQ" type="search" placeholder="Digite o nome do seu convênio" autocomplete="off"><span class="cv-s-ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span></div>
         <p class="cv-count" id="cvCount" aria-live="polite"></p>
       </div>
       <div class="cv-media">
         <figure class="cv-photo"><img src="../assets/img/149cd8411c.jpg" alt="Atendente conversando com paciente"></figure>
-        <div class="cv-float"><span class="cv-f-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"/><path d="m9 12 2 2 4-4"/></svg></span><div><b>Cobertura confirmada</b><span>antes da sua coleta</span></div></div>
+        <div class="cv-float"><span class="cv-f-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"/><path d="m9 12 2 2 4-4"/></svg></span><div><b>Confirme a cobertura</b><span>com o time da unidade</span></div></div>
       </div>
     </div>
   </section>
 
   <section class="cv-list">
     <div class="wrap">
-      <div class="cv-bar">
+      <div class="cx-grid">
+        <button type="button" class="cx" data-go="cartao"><span class="cx-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6.5 15h4"/></svg></span><span class="cx-b"><span class="mono">Cartões de desconto</span><strong>Econlife e Drogaquinze</strong><span>Descontos em exames para quem tem o Cartão Econlife, nas unidades Matriz, Independência e Tauste Taubaté, e para o Cartão Drogaquinze.</span><span class="cx-go">Ver cartões <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span></button>
+        <button type="button" class="cx" data-go="parc"><span class="cx-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1 1 0 0 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 0 0 3-3l-3.9-3.9a3 3 0 0 0-4.2 0l-.9.9a1 1 0 0 1-3-3l2.8-2.8a5 5 0 0 1 6.4-.5l.4.3 2.9-1.2"/><path d="M3 4.2 6 3l4 4M3 13.5l5.5 5.5"/></svg></span><span class="cx-b"><span class="mono">Parcerias</span><strong>Clínicas, empresas e sindicatos</strong><span>Condições especiais para clínicas parceiras, empresas, sindicatos e associações da região.</span><span class="cx-go">Ver parcerias <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span></button>
+        <button type="button" class="cx" data-go="funer"><span class="cx-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4.5-2 7-5.5 7-10V5l-7-3-7 3v7c0 4.5 2.5 8 7 10Z"/><path d="M12 8v6M9 11h6"/></svg></span><span class="cx-b"><span class="mono">Funerárias</span><strong>Planos funerários parceiros</strong><span>Associados da Funerária Taubaté, Funerária Jacareí, Funerária Vale do Paraíba, Campo Santo e Parque das Flores.</span><span class="cx-go">Ver funerárias <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span></button>
+      </div>
+      <div class="cv-bar" id="lista">
         <div class="cv-chips" role="tablist" aria-label="Filtrar por tipo">
           <button class="vchip on" data-f="all" role="tab" aria-selected="true">Todos</button>
-          <button class="vchip" data-f="oper" role="tab" aria-selected="false">Operadoras</button>
-          <button class="vchip" data-f="coop" role="tab" aria-selected="false">Cooperativas</button>
-          <button class="vchip" data-f="auto" role="tab" aria-selected="false">Autogestão</button>
+          <button class="vchip" data-f="plano" role="tab" aria-selected="false">Planos de saúde</button>
+          <button class="vchip" data-f="cartao" role="tab" aria-selected="false">Cartões</button>
+          <button class="vchip" data-f="parc" role="tab" aria-selected="false">Parcerias</button>
+          <button class="vchip" data-f="funer" role="tab" aria-selected="false">Funerárias</button>
+          <button class="vchip" data-f="sind" role="tab" aria-selected="false">Sindicatos e associações</button>
         </div>
         <span class="cv-hint">Passe o mouse ou toque para ver a marca original.</span>
       </div>
-      <div class="pc-grid" id="pcGrid"><button type="button" class="pc lg" data-name="Unimed" data-k="coop" style="--h:30px;--src:url(../assets/img/722cd7204f.png)"><span class="pc-logo"><span class="lg-mono" aria-hidden="true"></span><img class="lg-color" src="../assets/img/722cd7204f.png" alt=""></span><span class="pc-meta"><strong>Unimed</strong><em>Cooperativa</em></span></button><button type="button" class="pc lg" data-name="SulAmérica" data-k="oper" style="--h:42px;--src:url(../assets/img/097203b133.png)"><span class="pc-logo"><span class="lg-mono" aria-hidden="true"></span><img class="lg-color" src="../assets/img/097203b133.png" alt=""></span><span class="pc-meta"><strong>SulAmérica</strong><em>Operadora</em></span></button><button type="button" class="pc lg" data-name="Amil" data-k="oper" style="--h:36px;--src:url(../assets/img/ec4e98a2b0.svg)"><span class="pc-logo"><span class="lg-mono" aria-hidden="true"></span><img class="lg-color" src="../assets/img/ec4e98a2b0.svg" alt=""></span><span class="pc-meta"><strong>Amil</strong><em>Operadora</em></span></button><button type="button" class="pc lg" data-name="Cassi" data-k="auto" style="--h:44px;--src:url(../assets/img/490130ee01.png)"><span class="pc-logo"><span class="lg-mono" aria-hidden="true"></span><img class="lg-color" src="../assets/img/490130ee01.png" alt=""></span><span class="pc-meta"><strong>Cassi</strong><em>Autogestão</em></span></button><button type="button" class="pc lg" data-name="Porto Saúde" data-k="oper" style="--h:28px;--src:url(../assets/img/6cec85345f.svg)"><span class="pc-logo"><span class="lg-mono" aria-hidden="true"></span><img class="lg-color" src="../assets/img/6cec85345f.svg" alt=""></span><span class="pc-meta"><strong>Porto Saúde</strong><em>Operadora</em></span></button><button type="button" class="pc lg" data-name="Hapvida" data-k="oper" style="--h:32px;--src:url(../assets/img/54e2355299.png)"><span class="pc-logo"><span class="lg-mono" aria-hidden="true"></span><img class="lg-color" src="../assets/img/54e2355299.png" alt=""></span><span class="pc-meta"><strong>Hapvida</strong><em>Operadora</em></span></button><button type="button" class="pc lg" data-name="Cabesp" data-k="auto" style="--h:44px;--src:url(../assets/img/d10eaabe01.png)"><span class="pc-logo"><span class="lg-mono" aria-hidden="true"></span><img class="lg-color" src="../assets/img/d10eaabe01.png" alt=""></span><span class="pc-meta"><strong>Cabesp</strong><em>Autogestão</em></span></button><div class="pc pc-part" data-name="particular" data-k="part"><span class="pc-logo"><b>Particular</b></span><span class="pc-meta"><strong>Sem convênio</strong><em>Pagamento direto</em></span></div></div>
+      <div class="pc-grid" id="pcGrid"><button type="button" class="pc lg" data-name="Amil" data-k="plano" style="--h:34px;--src:url(../assets/img/ec4e98a2b0.svg)"><span class="pc-logo"><span class="lg-mono" aria-hidden="true"></span><img class="lg-color" src="../assets/img/ec4e98a2b0.svg" alt=""></span><span class="pc-meta"><strong>Amil</strong><em>Plano de saúde</em></span></button><button type="button" class="pc lg" data-name="SulAmérica" data-k="plano" style="--h:40px;--src:url(../assets/img/097203b133.png)"><span class="pc-logo"><span class="lg-mono" aria-hidden="true"></span><img class="lg-color" src="../assets/img/097203b133.png" alt=""></span><span class="pc-meta"><strong>SulAmérica</strong><em>Plano de saúde</em></span></button><button type="button" class="pc lg" data-name="Cassi" data-k="plano" style="--h:40px;--src:url(../assets/img/490130ee01.png)"><span class="pc-logo"><span class="lg-mono" aria-hidden="true"></span><img class="lg-color" src="../assets/img/490130ee01.png" alt=""></span><span class="pc-meta"><strong>Cassi</strong><em>Plano de saúde</em></span></button><button type="button" class="pc lg" data-name="Cabesp" data-k="plano" style="--h:40px;--src:url(../assets/img/d10eaabe01.png)"><span class="pc-logo"><span class="lg-mono" aria-hidden="true"></span><img class="lg-color" src="../assets/img/d10eaabe01.png" alt=""></span><span class="pc-meta"><strong>Cabesp</strong><em>Plano de saúde</em></span></button><button type="button" class="pc lg" data-name="Porto Seguro Saúde" data-k="plano" style="--h:26px;--src:url(../assets/img/6cec85345f.svg)"><span class="pc-logo"><span class="lg-mono" aria-hidden="true"></span><img class="lg-color" src="../assets/img/6cec85345f.svg" alt=""></span><span class="pc-meta"><strong>Porto Seguro Saúde</strong><em>Plano de saúde</em></span></button><div class="pc pc-t" data-name="Bradesco Saúde" data-k="plano"><span class="pc-logo"><b class="pc-word">Bradesco Saúde</b></span><span class="pc-meta"><strong>Bradesco Saúde</strong><em>Plano de saúde</em></span></div><div class="pc pc-t" data-name="NotreDame Intermédica" data-k="plano"><span class="pc-logo"><b class="pc-word">NotreDame Intermédica</b></span><span class="pc-meta"><strong>NotreDame Intermédica</strong><em>Plano de saúde</em></span></div><div class="pc pc-t" data-name="Care Plus" data-k="plano"><span class="pc-logo"><b class="pc-word">Care Plus</b></span><span class="pc-meta"><strong>Care Plus</strong><em>Plano de saúde</em></span></div><div class="pc pc-t" data-name="Mediservice" data-k="plano"><span class="pc-logo"><b class="pc-word">Mediservice</b></span><span class="pc-meta"><strong>Mediservice</strong><em>Plano de saúde</em></span></div><div class="pc pc-t" data-name="GEAP" data-k="plano"><span class="pc-logo"><b class="pc-word">GEAP</b></span><span class="pc-meta"><strong>GEAP</strong><em>Plano de saúde</em></span></div><div class="pc pc-t" data-name="Petrobras" data-k="plano"><span class="pc-logo"><b class="pc-word">Petrobras</b></span><span class="pc-meta"><strong>Petrobras</strong><em>Plano de saúde</em></span></div><div class="pc pc-t" data-name="Vivest" data-k="plano"><span class="pc-logo"><b class="pc-word">Vivest</b></span><span class="pc-meta"><strong>Vivest</strong><em>Plano de saúde</em></span></div><div class="pc pc-t" data-name="São Camilo" data-k="plano"><span class="pc-logo"><b class="pc-word">São Camilo</b></span><span class="pc-meta"><strong>São Camilo</strong><em>Plano de saúde</em></span></div><div class="pc pc-t" data-name="Allianz" data-k="plano"><span class="pc-logo"><b class="pc-word">Allianz</b></span><span class="pc-meta"><strong>Allianz</strong><em>Plano de saúde</em></span></div><div class="pc pc-t" data-name="Vale Saúde" data-k="plano"><span class="pc-logo"><b class="pc-word">Vale Saúde</b></span><span class="pc-meta"><strong>Vale Saúde</strong><em>Plano de saúde</em></span></div><div class="pc pc-t" data-name="Economus" data-k="plano"><span class="pc-logo"><b class="pc-word">Economus</b></span><span class="pc-meta"><strong>Economus</strong><em>Plano de saúde</em></span></div><div class="pc pc-t" data-name="Afresp" data-k="plano"><span class="pc-logo"><b class="pc-word">Afresp</b></span><span class="pc-meta"><strong>Afresp</strong><em>Plano de saúde</em></span></div><div class="pc pc-t" data-name="Ambep" data-k="plano"><span class="pc-logo"><b class="pc-word">Ambep</b></span><span class="pc-meta"><strong>Ambep</strong><em>Plano de saúde</em></span></div><div class="pc pc-t" data-name="Centralmed" data-k="plano"><span class="pc-logo"><b class="pc-word">Centralmed</b></span><span class="pc-meta"><strong>Centralmed</strong><em>Plano de saúde</em></span></div><div class="pc pc-t" data-name="Plano Mútuo Max" data-k="plano"><span class="pc-logo"><b class="pc-word">Plano Mútuo Max</b></span><span class="pc-meta"><strong>Plano Mútuo Max</strong><em>Plano de saúde</em></span></div><div class="pc pc-t" data-name="Plano Mútuo Medc" data-k="plano"><span class="pc-logo"><b class="pc-word">Plano Mútuo Medc</b></span><span class="pc-meta"><strong>Plano Mútuo Medc</strong><em>Plano de saúde</em></span></div><div class="pc pc-t" data-name="Fusex" data-k="plano"><span class="pc-logo"><b class="pc-word">Fusex</b></span><span class="pc-meta"><strong>Fusex</strong><em>Plano de saúde</em></span></div><div class="pc pc-t" data-name="Aeronáutica (GEAM)" data-k="plano"><span class="pc-logo"><b class="pc-word">Aeronáutica (GEAM)</b></span><span class="pc-meta"><strong>Aeronáutica (GEAM)</strong><em>Plano de saúde</em></span></div><div class="pc pc-t" data-name="Iamspe" data-k="plano"><span class="pc-logo"><b class="pc-word">Iamspe</b></span><span class="pc-meta"><strong>Iamspe</strong><em>Plano de saúde</em></span></div><div class="pc pc-t pc-card" data-name="Cartão Econlife Matriz, Independência e Tauste Taubaté" data-k="cartao"><span class="pc-logo"><img class="pc-img" src="../assets/img/6f4a312f01.jpg" alt=""></span><span class="pc-meta"><strong>Cartão Econlife</strong><em>Cartão</em></span></div><div class="pc pc-t pc-card" data-name="Cartão Drogaquinze Cartão de benefícios" data-k="cartao"><span class="pc-logo"><b class="pc-word">Drogaquinze</b></span><span class="pc-meta"><strong>Cartão Drogaquinze</strong><em>Cartão</em></span></div><div class="pc pc-t" data-name="Funerária Taubaté  funeraria" data-k="funer"><span class="pc-logo"><b class="pc-word">Funerária Taubaté</b></span><span class="pc-meta"><strong>Funerária Taubaté</strong><em>Funerária</em></span></div><div class="pc pc-t" data-name="Funerária Jacareí  funeraria" data-k="funer"><span class="pc-logo"><b class="pc-word">Funerária Jacareí</b></span><span class="pc-meta"><strong>Funerária Jacareí</strong><em>Funerária</em></span></div><div class="pc pc-t" data-name="Funerária Vale do Paraíba  funeraria" data-k="funer"><span class="pc-logo"><b class="pc-word">Funerária Vale do Paraíba</b></span><span class="pc-meta"><strong>Funerária Vale do Paraíba</strong><em>Funerária</em></span></div><div class="pc pc-t" data-name="Campo Santo Taubaté, Pinda, Campos e região funeraria" data-k="funer"><span class="pc-logo"><b class="pc-word">Campo Santo</b></span><span class="pc-meta"><strong>Campo Santo</strong><em>Funerária</em></span></div><div class="pc pc-t" data-name="Parque das Flores  funeraria" data-k="funer"><span class="pc-logo"><b class="pc-word">Parque das Flores</b></span><span class="pc-meta"><strong>Parque das Flores</strong><em>Funerária</em></span></div><div class="pc pc-t" data-name="Parcerias clínicas Clínicas e médicos parceiros parceria" data-k="parc"><span class="pc-logo"><b class="pc-word">Parcerias clínicas</b></span><span class="pc-meta"><strong>Parcerias clínicas</strong><em>Parceria</em></span></div><div class="pc pc-t" data-name="Senac Pindamonhangaba e região parceria" data-k="parc"><span class="pc-logo"><b class="pc-word">Senac</b></span><span class="pc-meta"><strong>Senac</strong><em>Parceria</em></span></div><div class="pc pc-t" data-name="Empresas parceiras Exames ocupacionais e periódicos parceria" data-k="parc"><span class="pc-logo"><b class="pc-word">Empresas parceiras</b></span><span class="pc-meta"><strong>Empresas parceiras</strong><em>Parceria</em></span></div><div class="pc pc-t" data-name="Sincomerciários sindicato associacao" data-k="sind"><span class="pc-logo"><b class="pc-word">Sincomerciários</b></span><span class="pc-meta"><strong>Sincomerciários</strong><em>Sindicato e associação</em></span></div><div class="pc pc-t" data-name="Sincovate sindicato associacao" data-k="sind"><span class="pc-logo"><b class="pc-word">Sincovate</b></span><span class="pc-meta"><strong>Sincovate</strong><em>Sindicato e associação</em></span></div><div class="pc pc-t" data-name="Sindicato dos Metalúrgicos de Taubaté sindicato associacao" data-k="sind"><span class="pc-logo"><b class="pc-word">Sindicato dos Metalúrgicos de Taubaté</b></span><span class="pc-meta"><strong>Sindicato dos Metalúrgicos de Taubaté</strong><em>Sindicato e associação</em></span></div><div class="pc pc-t" data-name="Sindicato dos Metalúrgicos de São José dos Campos sindicato associacao" data-k="sind"><span class="pc-logo"><b class="pc-word">Sindicato dos Metalúrgicos de São José dos Campos</b></span><span class="pc-meta"><strong>Sindicato dos Metalúrgicos de São José dos Campos</strong><em>Sindicato e associação</em></span></div><div class="pc pc-t" data-name="Sindicato dos Metalúrgicos de Pindamonhangaba sindicato associacao" data-k="sind"><span class="pc-logo"><b class="pc-word">Sindicato dos Metalúrgicos de Pindamonhangaba</b></span><span class="pc-meta"><strong>Sindicato dos Metalúrgicos de Pindamonhangaba</strong><em>Sindicato e associação</em></span></div><div class="pc pc-t" data-name="Sindicato dos Bancários de Taubaté sindicato associacao" data-k="sind"><span class="pc-logo"><b class="pc-word">Sindicato dos Bancários de Taubaté</b></span><span class="pc-meta"><strong>Sindicato dos Bancários de Taubaté</strong><em>Sindicato e associação</em></span></div><div class="pc pc-t" data-name="Apeoesp sindicato associacao" data-k="sind"><span class="pc-logo"><b class="pc-word">Apeoesp</b></span><span class="pc-meta"><strong>Apeoesp</strong><em>Sindicato e associação</em></span></div><div class="pc pc-t" data-name="Afuse sindicato associacao" data-k="sind"><span class="pc-logo"><b class="pc-word">Afuse</b></span><span class="pc-meta"><strong>Afuse</strong><em>Sindicato e associação</em></span></div><div class="pc pc-t" data-name="Sechsar sindicato associacao" data-k="sind"><span class="pc-logo"><b class="pc-word">Sechsar</b></span><span class="pc-meta"><strong>Sechsar</strong><em>Sindicato e associação</em></span></div><div class="pc pc-t" data-name="Sindsep sindicato associacao" data-k="sind"><span class="pc-logo"><b class="pc-word">Sindsep</b></span><span class="pc-meta"><strong>Sindsep</strong><em>Sindicato e associação</em></span></div><div class="pc pc-t" data-name="Sindnapi sindicato associacao" data-k="sind"><span class="pc-logo"><b class="pc-word">Sindnapi</b></span><span class="pc-meta"><strong>Sindnapi</strong><em>Sindicato e associação</em></span></div><div class="pc pc-t" data-name="Sisumug sindicato associacao" data-k="sind"><span class="pc-logo"><b class="pc-word">Sisumug</b></span><span class="pc-meta"><strong>Sisumug</strong><em>Sindicato e associação</em></span></div><div class="pc pc-t" data-name="Centro do Professorado Paulista sindicato associacao" data-k="sind"><span class="pc-logo"><b class="pc-word">Centro do Professorado Paulista</b></span><span class="pc-meta"><strong>Centro do Professorado Paulista</strong><em>Sindicato e associação</em></span></div><div class="pc pc-t" data-name="União dos Aposentados de Taubaté sindicato associacao" data-k="sind"><span class="pc-logo"><b class="pc-word">União dos Aposentados de Taubaté</b></span><span class="pc-meta"><strong>União dos Aposentados de Taubaté</strong><em>Sindicato e associação</em></span></div><div class="pc pc-t" data-name="Associação Comercial de Campos do Jordão sindicato associacao" data-k="sind"><span class="pc-logo"><b class="pc-word">Associação Comercial de Campos do Jordão</b></span><span class="pc-meta"><strong>Associação Comercial de Campos do Jordão</strong><em>Sindicato e associação</em></span></div><div class="pc pc-t" data-name="Associação Comercial de Caraguatatuba sindicato associacao" data-k="sind"><span class="pc-logo"><b class="pc-word">Associação Comercial de Caraguatatuba</b></span><span class="pc-meta"><strong>Associação Comercial de Caraguatatuba</strong><em>Sindicato e associação</em></span></div><div class="pc pc-t" data-name="Associação Comercial de Pindamonhangaba sindicato associacao" data-k="sind"><span class="pc-logo"><b class="pc-word">Associação Comercial de Pindamonhangaba</b></span><span class="pc-meta"><strong>Associação Comercial de Pindamonhangaba</strong><em>Sindicato e associação</em></span></div><div class="pc pc-t" data-name="Admap sindicato associacao" data-k="sind"><span class="pc-logo"><b class="pc-word">Admap</b></span><span class="pc-meta"><strong>Admap</strong><em>Sindicato e associação</em></span></div><div class="pc pc-part" data-name="particular" data-k="part"><span class="pc-logo"><b>Particular</b></span><span class="pc-meta"><strong>Sem convênio</strong><em>Pagamento direto</em></span></div></div>
       <div class="cv-empty" id="cvEmpty" hidden><strong>Não encontramos esse convênio na lista.</strong><span>Fale com a unidade para confirmar a cobertura do seu plano.</span><a class="btn btn-solid" href="../index.html#atendimento">Falar com a unidade <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-      <p class="cv-note">Lista de exemplo. A relação oficial de convênios será publicada pelo laboratório.</p>
+      <p class="cv-note">Principais convênios entre mais de 188 fontes pagadoras atendidas. Os planos aceitos variam por unidade e por categoria do plano. <a href="https://wa.me/551221239200?text=Ol%C3%A1!%20Gostaria%20de%20confirmar%20se%20meu%20conv%C3%AAnio%20%C3%A9%20atendido%20na%20unidade." target="_blank" rel="noopener">Confirme pelo WhatsApp</a>.</p>
     </div>
   </section>
 
@@ -972,28 +1095,56 @@ main section{padding-block:clamp(28px,4.5vw,56px)}
 <footer>
   <img class="wm" src="../assets/img/ab22b9f895.png" alt="">
   <div class="wrap">
+    <div class="prio-band">
+      <span class="pb-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+      <p><strong>Faça seu pré-cadastro online.</strong> <span>Envie seus dados antes de sair de casa e evite filas na recepção.</span></p>
+      <a href="https://wa.me/551221239200?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20meu%20pr%C3%A9-cadastro%20para%20exames." target="_blank" rel="noopener">Pré-cadastro <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
     <div class="grid">
       <div style="display:grid;gap:14px;align-content:start">
         <img class="logo" src="../assets/img/7f60889155.png" alt="Laboratório Oswaldo Cruz" width="320" height="57">
         <p style="max-width:38ch">Análises clínicas com tradição, precisão e cuidado.</p>
       </div>
-      <div><h4>Navegação</h4><ul><li><a href="../index.html#historia">O Laboratório</a></li><li><a href="../index.html#departamentos">Departamentos</a></li><li><a href="#topo">Convênios</a></li><li><a href="../informativos/index.html">Informativos</a></li><li><a href="../unidades/index.html">Unidades</a></li></ul></div>
-      <div><h4>Paciente</h4><ul><li><a href="../index.html#resultados">Resultados online</a></li><li><a href="../index.html#departamentos">Preparo de exames</a></li><li><a href="../index.html#unidades">Coleta domiciliar</a></li><li><a href="../index.html#unidades">Agendamento</a></li></ul></div>
+      <div><h4>Navegação</h4><ul><li><a href="../index.html#historia">O Laboratório</a></li><li><a href="../index.html#departamentos">Departamentos</a></li><li><a href="../index.html#vacinas">Vacinas</a></li><li><a href="#topo">Convênios</a></li><li><a href="../informativos/index.html">Informativos</a></li><li><a href="../unidades/index.html">Unidades</a></li><li><a href="../responsabilidade-social/index.html">Responsabilidade social</a></li></ul></div>
+      <div><h4>Paciente</h4><ul><li><a href="../index.html#resultados">Resultados online</a></li><li><a href="../index.html#departamentos">Preparo de exames</a></li><li><a href="../index.html#unidades">Coleta domiciliar</a></li><li><a href="../index.html#pre-cadastro">Pré-cadastro online</a></li></ul></div>
       <div><h4>Contato</h4><ul><li>SAC e WhatsApp: (12) 2123-9200</li><li>contato@oswaldocruz.com.br</li><li>Ouvidoria: ouvidoria@oswaldocruz.com.br</li><li>@laboswaldocruz</li></ul></div>
     </div>
     <div class="partners">
       <span class="p-t">Nossos parceiros</span>
       <ul>
-        <li><span class="p-logo"><img src="../assets/img/7f198968ad.jpg" alt="CDA, Centro Diagnóstico Andrade"></span><span>Centro Diagnóstico Andrade</span></li>
-        <li><span class="p-logo"><img src="../assets/img/2e7700529d.jpg" alt="Medicina e Segurança do Trabalho Oswaldo Cruz"></span><span>Gestão Ocupacional Oswaldo Cruz</span></li>
-        <li><span class="p-logo"><img src="../assets/img/cb7c1444b6.jpg" alt="Econlife"></span><span>Cartão de Desconto Econlife</span></li>
+        <li><span class="p-logo"><img src="../assets/img/b13004b5b4.jpg" alt="CDA, Centro Diagnóstico Andrade"></span><span>Centro Diagnóstico Andrade</span></li>
+        <li><span class="p-logo"><img src="../assets/img/b718f6b362.jpg" alt="Medicina e Segurança do Trabalho Oswaldo Cruz"></span><span>Gestão Ocupacional Oswaldo Cruz</span></li>
+        <li><span class="p-logo"><img src="../assets/img/6f4a312f01.jpg" alt="Econlife"></span><span>Cartão de Desconto Econlife</span></li>
       </ul>
     </div>
     <div class="legal">
       <span>Responsável técnico: Dr. José Domingos Abreu de Andrade, Patologista Clínico, CRM 37.368</span>
-      <span>© <span id="yr">2026</span> Laboratório Oswaldo Cruz. Todos os direitos reservados.</span>
+      <span>© <span id="yr">2026</span> Laboratório Oswaldo Cruz. Todos os direitos reservados. · <a href="#cookies" data-cookies>Preferências de cookies</a></span>
+    </div>
+    <p class="credit">Site criado por <a href="https://consultorio21.com.br" target="_blank" rel="noopener"><b>Consultório 21</b></a></p>
+  </div>
+  <a class="wa-float" href="https://wa.me/551221239200?text=Ol%C3%A1!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20exames." target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp, (12) 2123-9200"><svg width="30" height="30" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3Zm0 23.4c-2.1 0-4.1-.6-5.8-1.6l-.4-.2-3.8 1.2 1.2-3.7-.3-.4a10.4 10.4 0 0 1-1.7-5.8C5.2 10 10 5.3 16 5.3S26.8 10 26.8 15.9 22 26.4 16 26.4Zm5.9-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.7 5 2.1.9 3 1 4 .8.7-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5 0-.2-.3-.3-.6-.4Z"/></svg><span class="wa-tip">Fale com a gente</span></a>
+  <div class="ck" id="ck" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
+    <div class="ck-in">
+      <span class="ck-ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9 4 4 0 0 1-4-4 4 4 0 0 1-5-5Z"/><circle cx="8.5" cy="11.5" r="1"/><circle cx="12.5" cy="15.5" r="1"/><circle cx="15.5" cy="11" r=".6"/></svg></span>
+      <p class="ck-t"><b>Sua privacidade importa.</b> Usamos cookies essenciais para o site funcionar e, com a sua permissão, cookies de análise para melhorar a navegação, conforme a Lei Geral de Proteção de Dados (LGPD). <a href="https://oswaldocruz.com.br/politica-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a></p>
+      <div class="ck-b"><button type="button" class="ck-no" id="ckNo">Recusar</button><button type="button" class="ck-ok" id="ckOk">Aceitar</button></div>
     </div>
   </div>
+  <script>
+  (function(){
+    var K = 'oc_cookie_consent', ck = document.getElementById('ck');
+    function get(){ try { return localStorage.getItem(K); } catch(e){ return null; } }
+    function set(v){ try { localStorage.setItem(K, v); } catch(e){} window.ocConsent = v; document.dispatchEvent(new CustomEvent('oc:consent', {detail:v})); hide(); }
+    function show(){ ck.hidden = false; document.documentElement.style.setProperty('--ckh', ck.offsetHeight + 'px'); requestAnimationFrame(function(){ document.body.classList.add('ck-on'); }); }
+    function hide(){ document.body.classList.remove('ck-on'); setTimeout(function(){ ck.hidden = true; }, 400); }
+    window.ocConsent = get();
+    if(!window.ocConsent) setTimeout(show, 900);
+    document.getElementById('ckOk').addEventListener('click', function(){ set('aceito'); });
+    document.getElementById('ckNo').addEventListener('click', function(){ set('recusado'); });
+    document.querySelectorAll('[data-cookies]').forEach(function(a){ a.addEventListener('click', function(e){ e.preventDefault(); show(); }); });
+  })();
+  </script>
 </footer>
 <script>
 (function(){
@@ -1023,11 +1174,12 @@ main section{padding-block:clamp(28px,4.5vw,56px)}
   function norm(t){ return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
   function apply(){ var v = norm(q.value.trim()), n = 0;
     cards.forEach(function(c){ var hit = (f === 'all' || c.dataset.k === f || c.dataset.k === 'part') && (!v || norm(c.dataset.name).indexOf(v) > -1); c.classList.toggle('hide', !hit); if(hit && c.dataset.k !== 'part') n++; });
-    cnt.textContent = v ? (n ? n + ' convênio(s) encontrado(s).' : '') : n + ' convênios na lista.';
+    cnt.textContent = v ? (n ? n + ' resultado(s) encontrado(s).' : '') : n + ' itens nesta lista.';
     empty.hidden = !(v && n === 0);
   }
   chips.forEach(function(c){ c.addEventListener('click', function(){ chips.forEach(function(x){ x.classList.toggle('on', x === c); x.setAttribute('aria-selected', x === c); }); f = c.dataset.f; apply(); }); });
   q.addEventListener('input', apply); apply();
+  document.querySelectorAll('.cx').forEach(function(b){ b.addEventListener('click', function(){ var c = document.querySelector('.vchip[data-f="' + b.dataset.go + '"]'); if(c) c.click(); document.getElementById('lista').scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'start'}); }); });
   document.querySelectorAll('.lg').forEach(function(l){ l.addEventListener('click', function(){ var on = !l.classList.contains('on'); document.querySelectorAll('.lg.on').forEach(function(x){ x.classList.remove('on'); }); l.classList.toggle('on', on); }); });
   document.getElementById('yr').textContent = new Date().getFullYear();
 })();

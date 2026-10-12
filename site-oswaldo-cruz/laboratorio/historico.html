@@ -14,7 +14,7 @@
 <style>[hidden]{display:none!important}img{max-width:100%}body{margin:0}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&family=Instrument+Sans:wght@400;500;600;700&display=swap">
 <style>
 /* Conceito: blocos encaixados como lâminas de microscopia, ligados por conectores circulares, sobre papel azulado com grade e grão */
 :root{
@@ -33,7 +33,7 @@
   --on-dark-soft:rgba(242,246,249,.72);
   --f-display:"Libre Franklin","Franklin Gothic Medium","Arial Narrow",Arial,sans-serif;
   --f-body:"Instrument Sans","Segoe UI",system-ui,-apple-system,sans-serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --f-mono:"Instrument Sans",system-ui,sans-serif;
   --r-lg:36px; --r-md:24px; --r-sm:14px;
   --ease:cubic-bezier(.22,1,.36,1);
   --gut:clamp(16px,4vw,40px);
@@ -49,7 +49,7 @@ a{color:inherit}
 button,input{font:inherit}
 :focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:8px}
 .wrap{width:100%;max-width:1240px;margin-inline:auto;padding-inline:var(--gut)}
-.mono{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.mono{font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
 h1,h2,h3{font-family:var(--f-display);font-weight:700;line-height:1.05;margin:0;text-wrap:balance;letter-spacing:-.025em}
 h2{font-size:clamp(32px,5vw,56px)}
 h2 em,h1 em{font-style:normal;color:var(--blue);font-weight:500}
@@ -66,12 +66,13 @@ p{margin:0}
 .brand img{height:34px;width:auto}
 .brand .sym{display:none}
 .nav{position:relative;display:none;align-items:center;gap:2px}
-.nav a{position:relative;z-index:1;text-decoration:none;font-weight:500;font-size:15px;padding:10px 16px;border-radius:999px;color:var(--ink-soft);transition:color .3s}
+.nav a{position:relative;z-index:1;text-decoration:none;font-weight:500;font-size:15px;padding:10px 14px;white-space:nowrap;border-radius:999px;color:var(--ink-soft);transition:color .3s}
 .nav a:hover,.nav a.on{color:var(--navy)}
 .nav .lens{position:absolute;z-index:0;top:0;height:100%;border-radius:999px;background:var(--paper-2);opacity:0;transition:transform .45s var(--ease),width .45s var(--ease),opacity .25s}
 .hdr-actions{display:flex;align-items:center;gap:8px}
 .btn{display:inline-flex;align-items:center;gap:10px;border:0;cursor:pointer;text-decoration:none;font-weight:600;border-radius:999px;transition:transform .35s var(--ease),background .3s,color .3s}
-.btn-res{background:var(--navy);color:#fff;padding:11px 18px;font-size:14px}
+.btn-res{background:var(--navy);color:#fff;padding:11px 18px;font-size:14px;white-space:nowrap}
+@media (min-width:1000px) and (max-width:1279px){.nav a{padding:10px 9px;font-size:14px}.btn-res{padding:10px 14px}}
 .btn-res:hover{background:var(--navy-deep)}
 .btn-res .dot{width:8px;height:8px;border-radius:50%;background:var(--mist);box-shadow:0 0 0 0 rgba(169,195,210,.8);animation:pulse 2.4s infinite}
 @keyframes pulse{70%{box-shadow:0 0 0 8px rgba(169,195,210,0)}100%{box-shadow:0 0 0 0 rgba(169,195,210,0)}}
@@ -380,11 +381,12 @@ section{padding-block:clamp(64px,9vw,120px)}
 .logo-cell{position:relative;height:84px;border-radius:var(--r-sm);border:1px solid var(--line);display:grid;place-items:center;background:var(--paper);padding:12px;cursor:pointer;transition:background .35s,border-color .35s,transform .45s var(--ease),box-shadow .45s var(--ease)}
 .logo-cell.hide{display:none}
 .lg-mono,.lg-color{grid-area:1/1;height:var(--h);max-width:82%;transition:opacity .45s var(--ease),transform .5s var(--ease)}
-.lg-mono{display:block;width:100%;background:var(--ink-soft);opacity:.55;-webkit-mask:var(--src) center/contain no-repeat;mask:var(--src) center/contain no-repeat}
-.lg-color{width:auto;object-fit:contain;opacity:0;transform:scale(.94)}
+.lg-mono{display:none}
+.lg-color{width:auto;object-fit:contain;opacity:.6;filter:grayscale(1);transition:opacity .45s var(--ease),filter .45s var(--ease),transform .5s var(--ease)}
 .lg:hover,.lg:focus-visible,.lg.on{background:#fff;border-color:var(--mist);transform:translateY(-3px);box-shadow:0 16px 30px -22px rgba(20,26,60,.45)}
 .lg:hover .lg-mono,.lg:focus-visible .lg-mono,.lg.on .lg-mono{opacity:0;transform:scale(1.04)}
-.lg:hover .lg-color,.lg:focus-visible .lg-color,.lg.on .lg-color{opacity:1;transform:none}
+.lg:hover .lg-color,.lg:focus-visible .lg-color,.lg.on .lg-color{opacity:1;filter:none;transform:scale(1.04)}
+.lg-txt{cursor:default}.lg-txt b{font-family:var(--f-display);font-weight:700;font-size:15px;line-height:1.15;text-align:center;color:var(--ink-soft);opacity:.8;transition:color .35s,opacity .35s}.lg-txt:hover b{color:var(--navy);opacity:1}
 .lg-more{font-size:13px;font-weight:600;color:var(--ink-soft);text-align:center;line-height:1.3;cursor:default;border-style:dashed}
 .plans-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center;font-size:13px;color:var(--ink-soft)}
 .plans-side{background:var(--mist);border-radius:var(--r-lg);padding:clamp(20px,3vw,36px);display:grid;gap:16px;align-content:space-between;position:relative;overflow:hidden}
@@ -420,7 +422,7 @@ section{padding-block:clamp(64px,9vw,120px)}
 .btn-light:hover,.btn-line:hover{transform:translateY(-2px)}
 footer{background:var(--navy-deep);color:var(--on-dark-soft);padding-block:56px calc(32px + env(safe-area-inset-bottom,0px));margin-top:clamp(64px,8vw,110px);position:relative;overflow:hidden}
 footer .grid{display:grid;gap:32px}
-footer .logo{width:min(320px,80%);padding:14px 0}
+footer .logo{width:min(320px,80%);height:auto;aspect-ratio:800/142;object-fit:contain;padding:14px 0;box-sizing:content-box}
 footer h4{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);margin:0 0 12px;font-weight:500}
 footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 footer a{text-decoration:none;color:var(--on-dark)}
@@ -511,7 +513,7 @@ figure{margin:0}
 .vac-panel{position:relative;background:#DCE6EC;border-radius:var(--r-lg);padding:clamp(22px,4vw,56px);display:grid;gap:24px;isolation:isolate}
 .vac-panel::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;background-image:linear-gradient(rgba(39,50,128,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(39,50,128,.07) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:linear-gradient(90deg,#000,transparent 70%);mask-image:linear-gradient(90deg,#000,transparent 70%)}
 .vac-photo{position:relative;margin:calc(clamp(22px,4vw,56px) * -1 - 70px) auto -24px;width:min(86%,380px);pointer-events:none}
-.vac-photo img{width:100%;height:auto;filter:drop-shadow(0 24px 30px rgba(20,26,60,.18))}
+.vac-photo img{width:100%;height:auto;filter:none;-webkit-mask-image:linear-gradient(to bottom,#000 62%,rgba(0,0,0,.55) 80%,transparent 100%);mask-image:linear-gradient(to bottom,#000 62%,rgba(0,0,0,.55) 80%,transparent 100%)}
 .vac-body{display:grid;gap:20px;min-width:0}
 .vac-head{display:grid;gap:10px}
 .vac-head .mono{color:var(--blue)}
@@ -560,8 +562,8 @@ figure{margin:0}
 @media (min-width:1000px){
   .vac{padding-top:clamp(110px,12vw,170px)}
   .vac-panel{padding-right:44%}
-  .vac-photo{position:absolute;z-index:0;right:1%;bottom:0;height:calc(100% + 130px);width:auto;margin:0;display:flex;align-items:flex-end}
-  .vac-photo img{height:100%;width:auto;max-width:none}
+  .vac-photo{position:absolute;z-index:0;right:1%;bottom:0;height:calc(100% + 130px);aspect-ratio:760/1005;width:auto;margin:0;display:block}
+  .vac-photo img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 100%;-webkit-mask-image:none;mask-image:none}
   .vac-body{position:relative;z-index:1}
   .vac-cta{position:absolute;right:40px;bottom:40px;z-index:2}
 }
@@ -590,8 +592,8 @@ a.ch:hover .ch-go{transform:translate(4px,-50%)}
 .hours dt{color:var(--ink-soft)}
 .hours dd{margin:0;font-weight:700;color:var(--navy-deep);font-variant-numeric:tabular-nums}
 .tel{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:999px;padding:6px 6px 6px 20px;font-weight:600;font-size:16px;color:var(--navy-deep);font-variant-numeric:tabular-nums;user-select:all}
-.tel button{border:0;background:var(--navy);color:#fff;border-radius:999px;padding:9px 16px;font-size:13px;font-weight:600;cursor:pointer;transition:background .3s}
-.tel button:hover{background:var(--navy-deep)}
+.tel-call{display:inline-flex;align-items:center;gap:7px;background:var(--red);color:#fff;border-radius:999px;padding:9px 16px;font-size:13.5px;font-weight:600;text-decoration:none;white-space:nowrap;transition:background .3s,transform .3s var(--ease)}
+.tel-call:hover{background:#7d0710;transform:translateY(-1px)}
 .mascot{position:relative;min-height:340px;display:flex;align-items:flex-end;justify-content:center;overflow:visible}
 .m-bg{position:absolute;inset:40px 0 0;border-radius:var(--r-lg);background:linear-gradient(160deg,var(--blue),var(--navy));overflow:hidden}
 .m-bg::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.18) 1.2px,transparent 1.4px);background-size:16px 16px;-webkit-mask-image:linear-gradient(180deg,#000,transparent);mask-image:linear-gradient(180deg,#000,transparent)}
@@ -682,13 +684,71 @@ body.menu-open .m-dd{opacity:1;transform:none;transition-delay:.12s}
 .soc-go svg{transition:transform .35s var(--ease)}
 .soc-box:hover .soc-go svg{transform:translateX(4px)}
 
+
+/* Pré-cadastro online */
+.q-hl{position:relative;background:#fff;box-shadow:0 0 0 2px var(--red),0 24px 44px -26px rgba(157,9,19,.55)}
+.q-hl:hover{background:#fff;box-shadow:0 0 0 2px var(--red),0 30px 50px -28px rgba(157,9,19,.65)}
+.q-hl .ico{background:rgba(157,9,19,.08);color:var(--red)}
+.q-hl p b{color:var(--red);font-weight:600}
+.q-hl .saiba{background:var(--red);color:#fff}
+.q-badge{position:absolute;top:18px;right:18px;font:600 10.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--red);border-radius:999px;padding:5px 10px;animation:qpulse 2.4s ease-in-out infinite}
+@keyframes qpulse{0%,100%{box-shadow:0 0 0 0 rgba(157,9,19,.4)}50%{box-shadow:0 0 0 7px rgba(157,9,19,0)}}
+.prio{margin-top:clamp(18px,3vw,28px);display:grid;gap:22px;align-items:center;background:linear-gradient(135deg,var(--navy-deep),var(--navy));color:#fff;border-radius:var(--r-lg,28px);padding:clamp(24px,4vw,40px);position:relative;overflow:hidden}
+.prio::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(157,9,19,.45),rgba(157,9,19,0) 70%);pointer-events:none}
+.prio-copy{display:grid;gap:10px;position:relative}
+.prio-copy .mono{color:var(--mist)}
+.prio h3{font-family:var(--f-display);font-size:clamp(24px,3vw,34px);line-height:1.12;letter-spacing:-.02em;color:#fff;margin:0}
+.prio h3 em{font-style:normal;color:#FFB3B8}
+.prio p{color:rgba(255,255,255,.78);font-size:15.5px;line-height:1.6;margin:0;max-width:56ch}
+.prio-steps{list-style:none;margin:0;padding:0;display:grid;gap:8px;position:relative}
+.prio-steps li{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(169,195,210,.2);border-radius:14px;padding:10px 14px;font-size:14.5px;font-weight:500}
+.prio-steps b{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.12);font-size:13px;flex-shrink:0}
+.prio-steps li.on{background:var(--red);border-color:var(--red)}
+.prio-steps li.on b{background:#fff;color:var(--red)}
+.prio-btn{justify-self:start;background:#fff;color:var(--navy-deep);position:relative;padding:14px 22px;font-size:15px}
+.prio-btn:hover{background:#F4F7F9}
+@media (min-width:1000px){.prio{grid-template-columns:1.3fr 1fr;column-gap:48px}.prio-steps{grid-column:2;grid-row:1/span 2}.prio-btn{grid-column:1;grid-row:2}}
+.prio-band{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;background:rgba(157,9,19,.16);border:1px solid rgba(255,140,150,.28);border-radius:18px;padding:14px 18px;margin-bottom:40px;position:relative}
+.pb-ico{width:38px;height:38px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;flex-shrink:0}
+.prio-band p{flex:1;min-width:220px;margin:0;font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.8)}
+.prio-band strong{color:#fff;font-weight:600}
+.prio-band a{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy-deep);font-weight:600;font-size:14px;border-radius:999px;padding:9px 16px;text-decoration:none}
+.prio-band a svg{transition:transform .3s var(--ease)}
+.prio-band a:hover svg{transform:translateX(3px)}
+.prio-note{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:14px 0 0;font-size:13.5px;color:var(--ink-soft)}
+.prio-note span{font:600 10.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--red);border-radius:999px;padding:4px 9px}
+@media (prefers-reduced-motion:reduce){.q-badge{animation:none}}
+
+.wkband{display:grid;gap:16px;background:linear-gradient(135deg,var(--navy-deep),var(--navy));color:#fff;border-radius:var(--r-md);padding:clamp(18px,3vw,28px);margin-bottom:12px}
+.wkb-copy{display:grid;gap:6px}
+.wkb-copy .mono{color:var(--mist);font-size:11px}
+.wkb-copy strong{font-family:var(--f-display);font-size:clamp(20px,2.4vw,26px);letter-spacing:-.02em;line-height:1.15}
+.wkb-copy>span:last-child{color:var(--on-dark-soft);font-size:14.5px}
+.wkb-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.wkc{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-height:92px;text-decoration:none;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(169,195,210,.22);border-radius:14px;padding:10px 12px;transition:background .3s,transform .35s var(--ease)}
+.wkc:hover{background:rgba(255,255,255,.16);transform:translateY(-2px)}
+.wkc b{font-size:14px;font-weight:600;line-height:1.25}.wkc small{font-size:12px;color:var(--mist)}.wkc em{font-style:normal;font-size:11.5px;font-weight:600;color:#FFB3B8;margin-top:auto;padding-top:6px}
+.unit .status.wkd{background:var(--red);color:#fff}
+.unit .wk-h{color:var(--red);font-weight:600}
+.unit-acts{display:flex;align-items:center;gap:10px;border-top:1px solid var(--line);padding-top:14px}
+.unit-acts .go{flex:1;border-top:0;padding-top:0}
+.u-dirb{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:#fff;text-decoration:none;border-radius:999px;padding:8px 14px;font-size:13.5px;font-weight:600;white-space:nowrap}
+@media (min-width:760px){.wkb-list{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (min-width:1000px){.wkband{grid-template-columns:320px 1fr;align-items:center;gap:28px}}
+.plan-note{margin:0 0 12px;font-size:13.5px;line-height:1.5;color:var(--ink-soft);background:var(--paper);border-radius:12px;padding:10px 14px}
+.plan-note b{color:var(--red)}
+.plan-note a{color:#17663F;font-weight:600;text-underline-offset:3px}
 /* Parceiros no rodapé */
 .partners{margin-top:36px;padding-top:22px;border-top:1px solid rgba(169,195,210,.18);display:grid;gap:14px}
 .p-t{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mist)}
 .partners ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px 14px}
 .partners li{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--on-dark-soft)}
 .p-logo{width:96px;height:44px;border-radius:10px;background:#fff;display:grid;place-items:center;padding:6px 8px;flex-shrink:0;transition:transform .35s var(--ease)}
-.p-logo img{max-width:100%;max-height:100%;object-fit:contain}
+.p-logo img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;margin:auto}
+.credit{margin-top:14px;font-size:11.5px;color:rgba(169,195,210,.55);letter-spacing:.02em}
+.credit b{font-weight:600;color:rgba(169,195,210,.8)}
+.credit a{color:inherit;text-decoration:none}
+.credit a:hover b{color:#fff;text-decoration:underline;text-underline-offset:3px}
 .partners li:hover .p-logo{transform:translateY(-2px)}
 footer .legal{margin-top:22px}
 @media (min-width:760px){
@@ -698,6 +758,34 @@ footer .legal{margin-top:22px}
 @media (min-width:1000px) and (max-width:1199px){
   .nav a{padding:10px 11px;font-size:14px}
 }
+
+/* WhatsApp flutuante */
+.wa-float{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:85;width:60px;height:60px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;text-decoration:none;box-shadow:0 14px 30px -10px rgba(10,60,30,.55);transition:transform .4s var(--ease),bottom .45s var(--ease),opacity .3s}
+.wa-float::before{content:"";position:absolute;inset:0;border-radius:50%;background:#25D366;z-index:-1;animation:waP 2.6s ease-out infinite}
+@keyframes waP{0%{transform:scale(1);opacity:.55}70%,100%{transform:scale(1.55);opacity:0}}
+.wa-float:hover{transform:scale(1.07)}
+.wa-tip{position:absolute;right:calc(100% + 12px);top:50%;transform:translate(8px,-50%);opacity:0;pointer-events:none;white-space:nowrap;background:var(--navy-deep);color:#fff;font-size:13px;font-weight:600;border-radius:999px;padding:8px 14px;transition:opacity .3s,transform .4s var(--ease)}
+.wa-float:hover .wa-tip,.wa-float:focus-visible .wa-tip{opacity:1;transform:translate(0,-50%)}
+body.menu-open .wa-float,body.ud-open .wa-float{opacity:0;pointer-events:none}
+/* Aviso de cookies */
+.ck{position:fixed;left:0;right:0;bottom:0;z-index:95;padding:0 max(12px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));transform:translateY(110%);transition:transform .45s var(--ease);pointer-events:none}
+body.ck-on .ck{transform:none}
+.ck-in{pointer-events:auto;max-width:980px;margin-inline:auto;display:grid;grid-template-columns:auto 1fr;gap:12px 14px;align-items:center;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:20px;padding:16px 18px;box-shadow:0 24px 60px -24px rgba(20,26,60,.45)}
+.ck-ic{width:42px;height:42px;border-radius:12px;background:var(--paper);color:var(--navy);display:grid;place-items:center;align-self:start}
+.ck-t{font-size:13.5px;line-height:1.55;color:var(--ink-soft);margin:0}
+.ck-t b{color:var(--navy-deep)}
+.ck-t a{color:var(--navy);font-weight:600;text-underline-offset:3px}
+.ck-b{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end}
+.ck-b button{font:inherit;font-weight:600;font-size:14px;border-radius:999px;padding:11px 20px;cursor:pointer;transition:background .3s,color .3s,transform .3s var(--ease)}
+.ck-no{background:#fff;border:1px solid var(--line);color:var(--navy)}
+.ck-no:hover{background:var(--paper)}
+.ck-ok{background:var(--navy);border:1px solid var(--navy);color:#fff}
+.ck-ok:hover{background:var(--navy-deep)}
+.ck-b button:active{transform:scale(.97)}
+body.ck-on .wa-float{bottom:calc(var(--ckh,150px) + 26px + env(safe-area-inset-bottom,0px))}
+footer .legal a{color:var(--on-dark);text-underline-offset:3px}
+@media (min-width:760px){.ck-in{grid-template-columns:auto 1fr auto;padding:16px 20px}.ck-b{grid-column:auto}body.ck-on .wa-float{bottom:calc(var(--ckh,92px) + 26px)}}
+@media (max-width:420px){.wa-float{width:56px;height:56px}.ck-b button{flex:1}}
 /* Scroll reveal (progressive) */
 @supports (animation-timeline:view()){
   .rv{animation:rv linear both;animation-timeline:view();animation-range:entry 0% entry 40%}
@@ -729,7 +817,7 @@ footer .legal{margin-top:22px}
   .burger,.sheet{display:none}
   .hero{padding-block:36px 56px}
   .hero-grid{grid-template-columns:1.05fr 1fr;gap:40px;align-items:start}
-  .hero-copy{padding-top:48px}
+  .hero-copy{padding-top:48px;padding-right:48px}
   .stage{grid-template-columns:1fr}
   .photo{aspect-ratio:auto;height:560px}
   .results{position:absolute;left:-56px;right:auto;bottom:-72px;width:300px;padding:20px;box-shadow:0 40px 80px -40px rgba(20,26,60,.6)}
@@ -904,6 +992,7 @@ main section{padding-block:clamp(28px,4.5vw,56px)}
             <div class="dd-foot"><span>11 setores técnicos especializados</span><a href="../index.html#departamentos" class="dd-all">Ver todos <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
           </div>
         </div>
+        <a href="../index.html#vacinas">Vacinas</a>
         <a href="../convenios/index.html">Convênios</a>
         <a href="../informativos/index.html">Informativos</a>
         <a href="../unidades/index.html">Unidades</a>
@@ -921,9 +1010,10 @@ main section{padding-block:clamp(28px,4.5vw,56px)}
     <a href="../index.html#inicio">Início <small>01</small></a>
     <details class="m-dd"><summary>O Laboratório <small>02</small></summary><div class="m-dd-list"><a href="#topo">Histórico</a><a href="../laboratorio/politica-de-qualidade.html">Política de Qualidade</a><a href="../laboratorio/biografia.html">Biografia</a></div></details>
     <details class="m-dd"><summary>Departamentos <small>03</small></summary><div class="m-dd-list"><a href="../departamentos/anatomia-patologica.html">Anatomia Patológica</a><a href="../departamentos/bioquimica.html">Bioquímica</a><a href="../departamentos/divisao-veterinaria.html">Divisão Veterinária</a><a href="../departamentos/hematologia.html">Hematologia</a><a href="../departamentos/imunologia.html">Imunologia</a><a href="../departamentos/microbiologia.html">Microbiologia</a><a href="../departamentos/medicina-do-trabalho.html">Medicina do Trabalho</a><a href="../departamentos/parasitologia.html">Parasitologia</a><a href="../departamentos/toxicologia.html">Toxicologia</a><a href="../departamentos/urinalise-e-liquidos-corporeos.html">Urinálise e Líquidos Corpóreos</a><a href="../departamentos/biologia-molecular.html">Biologia Molecular</a></div></details>
-    <a href="../convenios/index.html">Convênios <small>04</small></a>
-    <a href="../informativos/index.html">Informativos <small>05</small></a>
-    <a href="../unidades/index.html">Unidades <small>06</small></a>
+    <a href="../index.html#vacinas">Vacinas <small>04</small></a>
+    <a href="../convenios/index.html">Convênios <small>05</small></a>
+    <a href="../informativos/index.html">Informativos <small>06</small></a>
+    <a href="../unidades/index.html">Unidades <small>07</small></a>
   </nav>
   <a class="sheet-res" href="../index.html#resultados">Acessar meus resultados <span class="circ"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
 </div>
@@ -1040,28 +1130,56 @@ main section{padding-block:clamp(28px,4.5vw,56px)}
 <footer>
   <img class="wm" src="../assets/img/ab22b9f895.png" alt="">
   <div class="wrap">
+    <div class="prio-band">
+      <span class="pb-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+      <p><strong>Faça seu pré-cadastro online.</strong> <span>Envie seus dados antes de sair de casa e evite filas na recepção.</span></p>
+      <a href="https://wa.me/551221239200?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20meu%20pr%C3%A9-cadastro%20para%20exames." target="_blank" rel="noopener">Pré-cadastro <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
     <div class="grid">
       <div style="display:grid;gap:14px;align-content:start">
         <img class="logo" src="../assets/img/7f60889155.png" alt="Laboratório Oswaldo Cruz" width="320" height="57">
         <p style="max-width:38ch">Análises clínicas com tradição, precisão e cuidado.</p>
       </div>
-      <div><h4>Navegação</h4><ul><li><a href="../index.html#historia">O Laboratório</a></li><li><a href="../index.html#departamentos">Departamentos</a></li><li><a href="../convenios/index.html">Convênios</a></li><li><a href="../informativos/index.html">Informativos</a></li><li><a href="../unidades/index.html">Unidades</a></li></ul></div>
-      <div><h4>Paciente</h4><ul><li><a href="../index.html#resultados">Resultados online</a></li><li><a href="../index.html#departamentos">Preparo de exames</a></li><li><a href="../index.html#unidades">Coleta domiciliar</a></li><li><a href="../index.html#unidades">Agendamento</a></li></ul></div>
+      <div><h4>Navegação</h4><ul><li><a href="../index.html#historia">O Laboratório</a></li><li><a href="../index.html#departamentos">Departamentos</a></li><li><a href="../index.html#vacinas">Vacinas</a></li><li><a href="../convenios/index.html">Convênios</a></li><li><a href="../informativos/index.html">Informativos</a></li><li><a href="../unidades/index.html">Unidades</a></li><li><a href="../responsabilidade-social/index.html">Responsabilidade social</a></li></ul></div>
+      <div><h4>Paciente</h4><ul><li><a href="../index.html#resultados">Resultados online</a></li><li><a href="../index.html#departamentos">Preparo de exames</a></li><li><a href="../index.html#unidades">Coleta domiciliar</a></li><li><a href="../index.html#pre-cadastro">Pré-cadastro online</a></li></ul></div>
       <div><h4>Contato</h4><ul><li>SAC e WhatsApp: (12) 2123-9200</li><li>contato@oswaldocruz.com.br</li><li>Ouvidoria: ouvidoria@oswaldocruz.com.br</li><li>@laboswaldocruz</li></ul></div>
     </div>
     <div class="partners">
       <span class="p-t">Nossos parceiros</span>
       <ul>
-        <li><span class="p-logo"><img src="../assets/img/7f198968ad.jpg" alt="CDA, Centro Diagnóstico Andrade"></span><span>Centro Diagnóstico Andrade</span></li>
-        <li><span class="p-logo"><img src="../assets/img/2e7700529d.jpg" alt="Medicina e Segurança do Trabalho Oswaldo Cruz"></span><span>Gestão Ocupacional Oswaldo Cruz</span></li>
-        <li><span class="p-logo"><img src="../assets/img/cb7c1444b6.jpg" alt="Econlife"></span><span>Cartão de Desconto Econlife</span></li>
+        <li><span class="p-logo"><img src="../assets/img/b13004b5b4.jpg" alt="CDA, Centro Diagnóstico Andrade"></span><span>Centro Diagnóstico Andrade</span></li>
+        <li><span class="p-logo"><img src="../assets/img/b718f6b362.jpg" alt="Medicina e Segurança do Trabalho Oswaldo Cruz"></span><span>Gestão Ocupacional Oswaldo Cruz</span></li>
+        <li><span class="p-logo"><img src="../assets/img/6f4a312f01.jpg" alt="Econlife"></span><span>Cartão de Desconto Econlife</span></li>
       </ul>
     </div>
     <div class="legal">
       <span>Responsável técnico: Dr. José Domingos Abreu de Andrade, Patologista Clínico, CRM 37.368</span>
-      <span>© <span id="yr">2026</span> Laboratório Oswaldo Cruz. Todos os direitos reservados.</span>
+      <span>© <span id="yr">2026</span> Laboratório Oswaldo Cruz. Todos os direitos reservados. · <a href="#cookies" data-cookies>Preferências de cookies</a></span>
+    </div>
+    <p class="credit">Site criado por <a href="https://consultorio21.com.br" target="_blank" rel="noopener"><b>Consultório 21</b></a></p>
+  </div>
+  <a class="wa-float" href="https://wa.me/551221239200?text=Ol%C3%A1!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20exames." target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp, (12) 2123-9200"><svg width="30" height="30" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3Zm0 23.4c-2.1 0-4.1-.6-5.8-1.6l-.4-.2-3.8 1.2 1.2-3.7-.3-.4a10.4 10.4 0 0 1-1.7-5.8C5.2 10 10 5.3 16 5.3S26.8 10 26.8 15.9 22 26.4 16 26.4Zm5.9-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.7 5 2.1.9 3 1 4 .8.7-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5 0-.2-.3-.3-.6-.4Z"/></svg><span class="wa-tip">Fale com a gente</span></a>
+  <div class="ck" id="ck" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
+    <div class="ck-in">
+      <span class="ck-ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9 4 4 0 0 1-4-4 4 4 0 0 1-5-5Z"/><circle cx="8.5" cy="11.5" r="1"/><circle cx="12.5" cy="15.5" r="1"/><circle cx="15.5" cy="11" r=".6"/></svg></span>
+      <p class="ck-t"><b>Sua privacidade importa.</b> Usamos cookies essenciais para o site funcionar e, com a sua permissão, cookies de análise para melhorar a navegação, conforme a Lei Geral de Proteção de Dados (LGPD). <a href="https://oswaldocruz.com.br/politica-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a></p>
+      <div class="ck-b"><button type="button" class="ck-no" id="ckNo">Recusar</button><button type="button" class="ck-ok" id="ckOk">Aceitar</button></div>
     </div>
   </div>
+  <script>
+  (function(){
+    var K = 'oc_cookie_consent', ck = document.getElementById('ck');
+    function get(){ try { return localStorage.getItem(K); } catch(e){ return null; } }
+    function set(v){ try { localStorage.setItem(K, v); } catch(e){} window.ocConsent = v; document.dispatchEvent(new CustomEvent('oc:consent', {detail:v})); hide(); }
+    function show(){ ck.hidden = false; document.documentElement.style.setProperty('--ckh', ck.offsetHeight + 'px'); requestAnimationFrame(function(){ document.body.classList.add('ck-on'); }); }
+    function hide(){ document.body.classList.remove('ck-on'); setTimeout(function(){ ck.hidden = true; }, 400); }
+    window.ocConsent = get();
+    if(!window.ocConsent) setTimeout(show, 900);
+    document.getElementById('ckOk').addEventListener('click', function(){ set('aceito'); });
+    document.getElementById('ckNo').addEventListener('click', function(){ set('recusado'); });
+    document.querySelectorAll('[data-cookies]').forEach(function(a){ a.addEventListener('click', function(e){ e.preventDefault(); show(); }); });
+  })();
+  </script>
 </footer>
 <script>
 (function(){
