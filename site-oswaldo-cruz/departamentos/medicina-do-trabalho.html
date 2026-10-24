@@ -1069,11 +1069,11 @@ footer .legal a{color:var(--on-dark);text-underline-offset:3px}
         <span class="d-idx mono" id="dIdx">Departamento 01 de 11</span>
         <h1 id="dTitle">Anatomia Patológica</h1>
         <p class="lead" id="dIntro"></p>
-        <div class="d-cta">
+        <div class="d-cta" id="dCta">
           <a class="btn btn-solid" href="../index.html#pre-cadastro">Fazer pré-cadastro <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="../index.html#resultados">Ver resultados</a>
         </div>
-        <p class="prio-note"><span>Sem fila</span> Faça o pré-cadastro online e evite filas na unidade.</p>
+        <p class="prio-note" id="dPrio"><span>Sem fila</span> Faça o pré-cadastro online e evite filas na unidade.</p>
       </div>
       <div class="d-media">
         <figure class="d-photo"><img id="dImg" alt=""></figure>
@@ -1207,13 +1207,13 @@ footer .legal a{color:var(--on-dark);text-underline-offset:3px}
   /* ===== Conteúdo dos departamentos (modelo padronizado) ===== */
   var IMGS = {"micro": "../assets/img/8c967c7b1e.jpg", "pipette": "../assets/img/ca0617d293.jpg", "tubes": "../assets/img/e7e3bc45fa.jpg", "scope": "../assets/img/7a3babf2a3.jpg", "manual": "../assets/img/aafef498cb.jpg"};
   var DEPTS = [
-    {slug:'anatomia-patologica', name:'Anatomia Patológica', img:'micro',
-     intro:'Análise de tecidos e células por médicos patologistas. Biópsias, citologias e exames de apoio ao diagnóstico, com laudos que trazem imagens coloridas da microscopia.',
-     badge:['Laudo com imagens','Fotos coloridas dos achados da microscopia'],
+    {slug:'anatomia-patologica', name:'Anatomia Patológica', img:'micro', nocta:true,
+     intro:'Análise de tecidos e células por médicos patologistas. Biópsias, citologias e exames de apoio ao diagnóstico, com laudos revisados por consenso entre os patologistas.',
+     badge:['Parecer por consenso','Rechecagem entre os patologistas'],
      exams:[['Colpocitológico','Papanicolaou'],['Anátomo-Patológico','Biópsias e peças cirúrgicas'],['Colorações especiais','Pesquisa de microrganismos'],['Citologia oncótica','Líquidos corpóreos'],['Punção aspirativa por agulha fina','PAAF'],['Imuno-histoquímica',''],['Imunofluorescência',''],['Consulta interoperatória','Congelação'],['Biologia molecular','Captura híbrida e FISH'],['Revisão de lâminas','Consultoria']],
      howT:'Do material ao laudo',
-     steps:[['Análise na central','A maioria dos exames é feita na nossa própria central analítica.'],['Parecer por consenso','Os patologistas fazem a rechecagem do parecer em conjunto.'],['Laudo ilustrado','O laudo traz imagens coloridas dos achados da microscopia.']],
-     note:'A equipe de médicos patologistas realiza a maioria dos exames na própria central analítica, com rechecagem de parecer por consenso e emissão de laudos com imagens coloridas da microscopia.'},
+     steps:[['Análise na central','A maioria dos exames é feita na nossa própria central analítica.'],['Parecer por consenso','Os patologistas fazem a rechecagem do parecer em conjunto.'],['Laudo conferido','Liberado só depois da conferência técnica.']],
+     note:'A equipe de médicos patologistas realiza a maioria dos exames na própria central analítica, com rechecagem de parecer por consenso antes da emissão do laudo.'},
     {slug:'bioquimica', name:'Bioquímica', img:'pipette',
      intro:'Uma grande variedade de análises em sangue e outros materiais: íons e eletrólitos, compostos nitrogenados, carboidratos, lipídeos, proteínas específicas e enzimas.',
      badge:['Ampla variedade de análises','Do metabolismo à função dos órgãos'],
@@ -1311,6 +1311,7 @@ footer .legal a{color:var(--on-dark);text-underline-offset:3px}
     $('dExT').textContent = d.examsT || 'Exames incluídos neste departamento';
     var lk = $('dLink'); if(d.link){ lk.hidden = false; lk.href = d.link[1]; lk.innerHTML = '<span>' + esc(d.link[0]) + '</span>' + AR; } else { lk.hidden = true; }
     $('dFeat').innerHTML = FEAT[d.slug] || '';
+    $('dCta').hidden = !!d.nocta; $('dPrio').hidden = !!d.nocta;
     $('dNote').innerHTML = d.note ? INFO + '<p style="margin:0">' + esc(d.note) + '</p>' : '';
     side.querySelectorAll('a').forEach(function(a){ a.classList.toggle('cur', a.dataset.s === d.slug); a.setAttribute('aria-current', a.dataset.s === d.slug ? 'page' : 'false'); });
     $('exQ').value = ''; $('exEmpty').hidden = true;
