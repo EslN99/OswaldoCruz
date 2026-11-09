@@ -103,9 +103,11 @@ body.menu-open .sheet nav a:nth-child(5){transition-delay:.24s}
 
 /* ===== Hero ===== */
 .hero{position:relative;padding-block:20px 40px}
-.hero::before{content:"";position:absolute;inset:-120px 0 0;z-index:-1;pointer-events:none;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;
-  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 70% 30%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 80% 60% at 70% 30%,#000 20%,transparent 75%)}
+.hero-hex{position:absolute;inset:-120px 0 0;z-index:-1;pointer-events:none;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 4%,#000 72%),linear-gradient(180deg,#000 55%,transparent 98%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 4%,#000 72%),linear-gradient(180deg,#000 55%,transparent 98%);mask-composite:intersect}
+.hero-hex svg{position:absolute;inset:0;width:100%;height:100%}
+.hero-hex polygon{fill:var(--navy);stroke:#fff;stroke-width:1.5}
+.hero-hex .hp{animation:hexfade var(--d,7s) var(--dl,0s) ease-in-out infinite}
+@keyframes hexfade{0%,100%{fill-opacity:var(--o)}50%{fill-opacity:calc(var(--o) + .09)}}
 .hero-grid{display:grid;gap:16px}
 .pill{justify-self:start;display:inline-flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px 7px 8px;font-size:13px;font-weight:500;color:var(--navy)}
 .pill .ic{width:24px;height:24px;border-radius:50%;background:var(--navy);display:grid;place-items:center;color:#fff}
@@ -821,6 +823,27 @@ footer .legal a{color:var(--on-dark);text-underline-offset:3px}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+
+/* Hero v2 (feedback 1) */
+.hero h1{font-size:clamp(34px,4.6vw,56px);line-height:1.04}
+.hero h1 .line:nth-child(4)>span{animation-delay:.24s}
+.hero h1 .line:nth-child(5)>span{animation-delay:.32s}
+.stage{padding-top:30px}
+.photo{aspect-ratio:1175/660}
+.photo img{object-position:50% 50%}
+.selo3d{position:absolute;z-index:4;width:84px;height:84px;top:-22px;left:50%;margin-left:-42px;border-radius:50%;filter:drop-shadow(0 14px 22px rgba(20,26,60,.35));animation:fade 1.1s .3s var(--ease) both}
+.btn-res{transition:transform .35s var(--ease),background .3s,opacity .35s}
+body.res-vis .hdr-actions .btn-res{opacity:0;pointer-events:none;transform:translateY(-6px)}
+@media (min-width:1000px){
+  .hero-grid{grid-template-columns:1fr 1.08fr;gap:48px}
+  .hero-copy{padding-top:40px;padding-right:0}
+  .stage{padding-top:40px;margin-bottom:0}
+  .photo{height:auto;aspect-ratio:1175/660;width:100%;margin-left:0}
+  .photo img{object-position:50% 50%}
+  .photo .tag{display:none}
+  .selo3d{width:150px;height:150px;top:-10px;left:-44px;margin-left:0}
+  .results{position:relative;left:auto;bottom:auto;justify-self:end;width:340px;margin:-56px 22px 0 0}
+}
 </style>
 </head>
 <body>
@@ -877,16 +900,17 @@ footer .legal a{color:var(--on-dark);text-underline-offset:3px}
 <main id="inicio">
   <!-- ===== Hero ===== -->
   <section class="hero" aria-label="Apresentação">
+    <div class="hero-hex" aria-hidden="true"></div>
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <p class="motto"><span>Tradição e Seriedade a Serviço da Boa Medicina</span><b>desde 1974</b></p>
         <h1>
           <span class="h1-kw">Laboratório de análises clínicas</span>
-          <span class="line"><span>Precisão que</span></span>
-          <span class="line"><span>atravessa</span></span>
+          <span class="line"><span>Qualidade e</span></span>
+          <span class="line"><span>confiança técnica</span></span>
+          <span class="line"><span>que atravessa</span></span>
           <span class="line"><span><em>gerações.</em></span></span>
         </h1>
-        <p class="lead">Laboratório em Taubaté desde 1974, com unidades no Vale do Paraíba, Litoral Norte, Região Serrana e São Paulo. Exames de sangue, urina, fezes, hormônios e check-up, coleta domiciliar, vacinas e resultados online. Convênios e particular.</p>
+        <p class="lead">Laboratório de Patologia Clínica / Medicina Laboratorial fundado em 1974 em Taubaté/SP, com Unidades de Atendimento no Vale do Paraíba, Região Serrana, Litoral Norte e Capital. Referência em Análises Clínicas Humanas/Veterinárias, Anatomia Patológica, Citologia, Segurança e Medicina do Trabalho. Atendimento a Convênios, Cartões Desconto e Particulares.</p>
         <ul class="kw" aria-label="Serviços">
           <li>Exames de sangue</li><li>Coleta domiciliar</li><li>Check-up</li><li>Vacinas</li><li>Resultados online</li><li>Parasitológico</li>
         </ul>
@@ -899,14 +923,14 @@ footer .legal a{color:var(--on-dark);text-underline-offset:3px}
 
       <div class="stage">
         <div class="photo">
-          <img src="assets/img/8d97f0f9f9.jpg" alt="Equipe do laboratório analisando resultados ao lado do microscópio" width="1000" height="1340">
+          <img src="assets/img/hero_recepcao.jpg" alt="Família sendo atendida na recepção do Laboratório Oswaldo Cruz" width="1175" height="660">
           <div class="tag"><span class="chip"><b></b>Laudo online</span><span class="chip">Coleta domiciliar</span></div>
         </div>
-        <div class="connector" aria-hidden="true"><span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+        <img class="selo3d" src="assets/img/selo3d.webp" alt="Selo Laboratório Oswaldo Cruz: Tradição e Seriedade a Serviço da Boa Medicina, desde 1974" width="300" height="300">
 
         <!-- Card de resultados: integração via API no back end -->
         <div class="results" id="resultados">
-          <span class="mono">Área do paciente</span>
+          <span class="mono">Área do cliente</span>
           <h3>Seus resultados</h3>
           <p class="sub">Use os dados do protocolo entregue na coleta.</p>
           <form id="resForm" novalidate>
@@ -1151,8 +1175,8 @@ footer .legal a{color:var(--on-dark);text-underline-offset:3px}
         </div>
         <ul class="pact-list">
           <li><span class="pi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><strong>Resultados com agilidade</strong><span>Liberação rápida, para você e seu médico decidirem sem espera.</span></div></li>
-          <li><span class="pi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></span><div><strong>Atendimento humano</strong><span>Cada paciente é recebido com atenção, do cadastro ao laudo.</span></div></li>
-          <li><span class="pi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/><path d="M8 9h8M8 13h5"/></svg></span><div><strong>Transparência no dia a dia</strong><span>Conversa direta com pacientes e médicos, com apoio técnico sempre que precisarem.</span></div></li>
+          <li><span class="pi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></span><div><strong>Atendimento humano</strong><span>Cada cliente é recebido com atenção, do cadastro ao laudo.</span></div></li>
+          <li><span class="pi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/><path d="M8 9h8M8 13h5"/></svg></span><div><strong>Transparência no dia a dia</strong><span>Conversa direta com clientes e médicos, com apoio técnico sempre que precisarem.</span></div></li>
           <li><span class="pi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4"/><circle cx="12" cy="12" r="3"/></svg></span><div><strong>Presente na urgência</strong><span>Coletas e entregas urgentes, inclusive fora do horário comercial.</span></div></li>
         </ul>
       </div>
@@ -1170,7 +1194,7 @@ footer .legal a{color:var(--on-dark);text-underline-offset:3px}
         <div class="docs-copy">
           <span class="eyebrow mono">Para médicos</span>
           <h2>Assessoria técnica <em>sem espera.</em></h2>
-          <p class="lead">O médico conversa direto com a nossa equipe técnica. Em caso de discordância clínico laboratorial, revisamos o laudo e, quando preciso, repetimos o exame sem custo para o paciente.</p>
+          <p class="lead">O médico conversa direto com a nossa equipe técnica. Em caso de discordância clínico laboratorial, revisamos o laudo e, quando preciso, repetimos o exame sem custo para o cliente.</p>
           <ul class="docs-list">
             <li><span>01</span><div><strong>Contato direto</strong>Fala com quem analisou a amostra.</div></li>
             <li><span>02</span><div><strong>Liberação ágil</strong>Laudos disponíveis assim que conferidos.</div></li>
@@ -1312,7 +1336,7 @@ footer .legal a{color:var(--on-dark);text-underline-offset:3px}
         <p style="max-width:38ch">Análises clínicas com tradição, precisão e cuidado.</p>
       </div>
       <div><h4>Navegação</h4><ul><li><a href="#historia">O Laboratório</a></li><li><a href="#departamentos">Departamentos</a></li><li><a href="convenios/index.html">Convênios</a></li><li><a href="informativos/index.html">Informativos</a></li><li><a href="unidades/index.html">Unidades</a></li><li><a href="responsabilidade-social/index.html">Responsabilidade social</a></li></ul></div>
-      <div><h4>Paciente</h4><ul><li><a href="#resultados">Resultados online</a></li><li><a href="#departamentos">Preparo de exames</a></li><li><a href="#unidades">Coleta domiciliar</a></li><li><a href="#agendamento">Agendamento online</a></li></ul></div>
+      <div><h4>Cliente</h4><ul><li><a href="#resultados">Resultados online</a></li><li><a href="#departamentos">Preparo de exames</a></li><li><a href="#unidades">Coleta domiciliar</a></li><li><a href="#agendamento">Agendamento online</a></li></ul></div>
       <div><h4>Contato</h4><ul><li>SAC e WhatsApp: (12) 2123-9200</li><li>contato@oswaldocruz.com.br</li><li>Ouvidoria: ouvidoria@oswaldocruz.com.br</li><li>@laboswaldocruz</li></ul></div>
     </div>
     <div class="partners">
@@ -1613,5 +1637,30 @@ footer .legal a{color:var(--on-dark);text-underline-offset:3px}
 })();
 </script>
 
+
+<script>
+(function(){
+  var box=document.querySelector('.hero-hex'); if(!box) return;
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function draw(){
+    var W=box.offsetWidth,H=box.offsetHeight,R=W<700?18:24,w=Math.sqrt(3)*R,h=1.5*R,ns='http://www.w3.org/2000/svg';
+    var svg=document.createElementNS(ns,'svg'); svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    var pts=[];for(var k=0;k<6;k++){var a=Math.PI/180*(60*k-30);pts.push((R*Math.cos(a)).toFixed(2)+','+(R*Math.sin(a)).toFixed(2));}
+    var P=pts.join(' '),seed=7;function rnd(){seed=(seed*16807)%2147483647;return seed/2147483647;}
+    for(var r=0;r*h<H+R;r++){for(var c=0;c*w<W+w;c++){
+      var x=c*w+(r%2?w/2:0),y=r*h,p=document.createElementNS(ns,'polygon');
+      p.setAttribute('points',P);p.setAttribute('transform','translate('+x.toFixed(1)+','+y.toFixed(1)+')');
+      var o=(.012+rnd()*.05);p.style.setProperty('--o',o.toFixed(3));p.style.fillOpacity=o.toFixed(3);
+      if(!reduce&&rnd()<.22){p.setAttribute('class','hp');p.style.setProperty('--d',(5+rnd()*6).toFixed(1)+'s');p.style.setProperty('--dl',(-rnd()*10).toFixed(1)+'s');}
+      svg.appendChild(p);}}
+    box.innerHTML='';box.appendChild(svg);
+  }
+  draw();var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(draw,200);});
+  var res=document.getElementById('resultados');
+  if(res&&'IntersectionObserver' in window){
+    new IntersectionObserver(function(es){es.forEach(function(e){document.body.classList.toggle('res-vis',e.isIntersecting);});},{threshold:.15}).observe(res);
+  }
+})();
+</script>
 </body>
 </html>
