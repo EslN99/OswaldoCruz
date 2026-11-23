@@ -884,7 +884,9 @@ main section{padding-block:clamp(28px,4.5vw,56px)}
 .h-facts span{font-size:12.5px;color:var(--ink-soft)}
 .cmpr{position:relative;aspect-ratio:1/1;max-width:100%;border-radius:var(--r-lg);overflow:hidden;background:var(--paper-2);user-select:none;touch-action:pan-y}
 .cmpr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.c-now{object-position:50% 60%}
+.c-now{object-position:32% 50%}
+.c-tag{transition:opacity .35s}
+.cmpr.at-now .t1,.cmpr.at-then .t2{opacity:0}
 .c-then{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--p)) 0 0)}
 .c-then img{filter:sepia(.25) contrast(1.05)}
 .c-handle{position:absolute;top:0;bottom:0;left:var(--p);width:2px;background:#fff;transform:translateX(-1px);pointer-events:none;box-shadow:0 0 0 1px rgba(20,26,60,.15)}
@@ -1038,7 +1040,7 @@ main section{padding-block:clamp(28px,4.5vw,56px)}
         <nav class="crumb" aria-label="Você está em"><a href="../index.html#inicio">Início</a><span>/</span><a href="../index.html#historia">O Laboratório</a><span>/</span><b>Histórico</b></nav>
         <span class="mono h-eyebrow">Apresentação</span>
         <h1>Desde 1974, a serviço da <em>boa medicina.</em></h1>
-        <p class="lead">O Laboratório de Análises Clínicas Oswaldo Cruz iniciou suas atividades em 1974, na cidade de Taubaté, SP. Mais de cinco décadas depois, segue o mesmo caminho: trabalho, seriedade e ética profissional.</p>
+        <p class="lead">Trabalho, Seriedade e Ética Profissional.</p>
         <div class="h-facts">
           <div><b>1974</b><span>Ano de fundação</span></div>
           <div><b>Taubaté</b><span>Cidade de origem</span></div>
@@ -1047,14 +1049,14 @@ main section{padding-block:clamp(28px,4.5vw,56px)}
       </div>
       <div class="h-compare rv">
         <div class="cmpr" id="cmpr" style="--p:50%">
-          <img class="c-now" src="../assets/img/9ab00651bf.jpg" alt="Fachada atual do Laboratório Oswaldo Cruz">
+          <img class="c-now" src="../assets/img/fachada_matriz.jpg" alt="Fachada atual da Matriz do Laboratório Oswaldo Cruz, em Taubaté">
           <div class="c-then"><img src="../assets/img/2fe8f4e644.jpg" alt="Fachada do Laboratório de Análises Clínicas Oswaldo Cruz nos primeiros anos"></div>
           <span class="c-tag t1">1974</span><span class="c-tag t2">Hoje</span>
           <div class="c-handle" aria-hidden="true"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6-6 6 6 6M15 6l6 6-6 6"/></svg></span></div>
-          <label class="sr" for="cmprR">Comparar a fachada de 1974 com o laboratório hoje</label>
+          <label class="sr" for="cmprR">Comparar a fachada de 1974 com a Matriz hoje</label>
           <input type="range" id="cmprR" min="0" max="100" value="50">
         </div>
-        <p class="c-cap">Arraste para comparar a primeira sede com a fachada de hoje.</p>
+        <p class="c-cap">Toque ou arraste para comparar a primeira sede com a Matriz hoje.</p>
       </div>
     </div>
   </section>
@@ -1063,11 +1065,11 @@ main section{padding-block:clamp(28px,4.5vw,56px)}
     <div class="wrap story-wrap">
       <aside class="story-side"><span class="eyebrow mono">Apresentação</span><p class="story-pull">Trabalho, seriedade e ética profissional.</p></aside>
       <div class="story-text">
-        <p class="dropcap">O Laboratório de Análises Clínicas Oswaldo Cruz iniciou suas atividades em 1974, na cidade de Taubaté, SP. Seu idealizador e fundador, o médico patologista clínico Dr. José Domingos Abreu de Andrade, teve desde o início o ideal de criar um laboratório de análises de nível regional, em ressonância com a vanguarda tecnológica do setor, e cuja prestação de serviços fosse marcada pelo diferencial no atendimento aos clientes e pela qualidade dos exames realizados.</p>
-        <p>Ao longo de mais de cinco décadas de atuação no setor de diagnósticos, a empresa consolidou sua imagem junto à comunidade pela fidelização de seus clientes. Apesar das constantes intempéries enfrentadas pelas empresas no país e da complexidade econômica inerente ao setor de saúde, o laboratório seguiu pela direção que sempre achou ser a melhor: trabalho, seriedade e ética profissional.</p>
-        <p>Sem se render aos desafios e perseguindo constantemente a melhoria dos serviços prestados, a empresa expandiu regionalmente, inaugurando unidades no Vale do Paraíba, no Litoral Norte, na Região Serrana e na Capital Paulista.</p>
-        <p>Sempre investindo em tecnologia e na capacitação de pessoas, o Oswaldo Cruz se destaca pela qualidade no atendimento e pela rapidez na entrega dos resultados, já que realiza a maioria dos exames em sua própria Central Analítica. Assim, exames como hormônios, alergias, marcadores tumorais e sorologias, que teriam prazos longos se fossem encaminhados a laboratórios de apoio, ficam prontos no mesmo dia da coleta.</p>
-        <p>Hoje o grupo reúne também serviços de Medicina e Segurança do Trabalho, Patologia Clínica Veterinária, Anatomia Patológica, a empresa parceira Cartão de Benefícios Econlife e, desde 2026, a Sala de Imunização Humana, com aplicação de vacinas.</p>
+        <p class="dropcap">O Laboratório de Análises Clínicas Oswaldo Cruz iniciou suas atividades em 1974, na cidade de Taubaté/SP. Seu idealizador e fundador, o médico patologista clínico Dr. José Domingos Abreu de Andrade, teve desde o início o ideal de criar um laboratório de análises de nível regional, em ressonância com a vanguarda tecnológica do setor, e cuja prestação de serviços fosse marcada pelo diferencial no atendimento aos clientes e pela qualidade dos exames realizados.</p>
+        <p>Ao longo de mais de cinco décadas de atuação no setor de diagnósticos, a empresa consolidou sua imagem junto à comunidade pela fidelização de seus clientes. Apesar das constantes intempéries enfrentadas pelas empresas no país e da complexidade econômica inerente ao setor de saúde, o laboratório seguiu pela direção que sempre considerou ser a mais assertiva: trabalho, seriedade e ética profissional.</p>
+        <p>Sem render-se aos desafios e perseguindo constantemente a melhoria dos serviços prestados, a empresa expandiu regionalmente, inaugurando unidades no Vale do Paraíba, no Litoral Norte, na Região Serrana e na Capital Paulista.</p>
+        <p>Investindo constantemente em tecnologia e na capacitação de pessoas, o Oswaldo Cruz se destaca pela qualidade no atendimento, assessoria técnico-científica e pela rapidez na entrega dos resultados, já que realiza a maioria dos exames em sua própria Central Analítica. Assim, exames como hormônios, alergias, marcadores tumorais e sorologias, que teriam prazos longos se fossem encaminhados a laboratórios de apoio, ficam prontos no mesmo dia da coleta.</p>
+        <p>Hoje o grupo reúne também serviços de Medicina e Segurança do Trabalho, Patologia Clínica Veterinária, Anatomia Patológica, a empresa parceira Cartão de Benefícios Econlife e, desde 2026, a Sala de Imunização Humana com aplicação de vacinas.</p>
       </div>
     </div>
   </section>
@@ -1080,8 +1082,7 @@ main section{padding-block:clamp(28px,4.5vw,56px)}
           <span class="mono">Fundador</span>
           <h2>Dr. José Domingos Abreu de Andrade</h2>
           <p class="f-role">Médico patologista clínico, idealizador e fundador</p>
-          <blockquote>Criar um laboratório de análises de nível regional, em ressonância com a vanguarda tecnológica do setor, com diferencial no atendimento e na qualidade dos exames.</blockquote>
-          <p class="f-src">O ideal que guiou o laboratório desde o início.</p>
+          <blockquote>Imigrando de Portugal para o Brasil aos 13 anos de idade, tinha como sonho se tornar médico e, apaixonado pela área de Medicina Laboratorial, idealizou criar um laboratório de análises clínicas alinhado com os avanços constantes do setor, com foco diferencial no atendimento, assessoria médica e qualidade.</blockquote>
         </div>
       </div>
     </div>
@@ -1216,12 +1217,27 @@ main section{padding-block:clamp(28px,4.5vw,56px)}
     dd.querySelectorAll('.dd-grid a').forEach(function(a){ a.addEventListener('click', function(){ dd.classList.remove('open'); if(document.activeElement) document.activeElement.blur(); }); });
   });
 
-  /* Comparador 1974 x hoje */
+  /* Comparador 1974 x hoje: alterna sozinho, arrasta ou toca para trocar */
   var c = document.getElementById('cmpr'), r = document.getElementById('cmprR');
-  r.addEventListener('input', function(){ c.style.setProperty('--p', r.value + '%'); });
-  if(!reduce){ var t0 = null; function intro(t){ if(!t0) t0 = t; var p = Math.min((t - t0) / 1800, 1), v = 50 + Math.sin(p * Math.PI * 2) * 22 * (1 - p);
-    if(r.dataset.touched) return; c.style.setProperty('--p', v + '%'); r.value = v; if(p < 1) requestAnimationFrame(intro); }
-    setTimeout(function(){ requestAnimationFrame(intro); }, 700); r.addEventListener('pointerdown', function(){ r.dataset.touched = 1; }); }
+  var cur = 50, raf = null, auto = null, idle = null, sx = 0, moved = false, vis = false;
+  function setP(v){ cur = v; c.style.setProperty('--p', v + '%'); r.value = v; c.classList.toggle('at-now', v < 8); c.classList.toggle('at-then', v > 92); }
+  function anim(to, ms){ cancelAnimationFrame(raf); var from = cur, t0 = null;
+    if(reduce){ setP(to); return; }
+    function step(t){ if(!t0) t0 = t; var k = Math.min((t - t0) / ms, 1), e = k < .5 ? 4*k*k*k : 1 - Math.pow(-2*k + 2, 3) / 2; setP(from + (to - from) * e); if(k < 1) raf = requestAnimationFrame(step); }
+    raf = requestAnimationFrame(step); }
+  function flip(){ anim(cur > 50 ? 0 : 100, 1400); }
+  function startAuto(){ stopAuto(); if(reduce) return; auto = setInterval(function(){ if(vis && !document.hidden) flip(); }, 3600); }
+  function stopAuto(){ clearInterval(auto); auto = null; }
+  function pause(){ stopAuto(); clearTimeout(idle); idle = setTimeout(startAuto, 9000); }
+  var down = false, pv = 50;
+  r.addEventListener('pointerdown', function(e){ down = true; pv = cur; sx = e.clientX; moved = false; pause(); });
+  r.addEventListener('pointermove', function(e){ if(down && Math.abs(e.clientX - sx) > 6){ moved = true; } });
+  window.addEventListener('pointerup', function(){ down = false; });
+  r.addEventListener('input', function(){ if(down && !moved){ setP(pv); return; } cancelAnimationFrame(raf); setP(+r.value); });
+  r.addEventListener('click', function(){ if(!moved){ setP(pv); anim(pv > 50 ? 0 : 100, 1400); } });
+  r.addEventListener('keydown', pause);
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ vis = es[0].isIntersecting; }, {threshold:.4}).observe(c); } else { vis = true; }
+  setP(100); setTimeout(function(){ flip(); startAuto(); }, 1200);
 
   /* Linha do tempo: itens acendem e linha acompanha */
   var tlEl = document.getElementById('tline'), tlItems = tlEl.querySelectorAll('li');
